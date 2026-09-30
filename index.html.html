@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نظام متابعة التدقيق - مديرية التربية إدلب (آمن)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Tajawal', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    background-attachment: fixed;
+    color: #f8fafc;
+    padding: 20px;
+  }
+  h1, h2, h3, .cluster-name, .stat-card .value, .btn { font-family: 'Cairo', sans-serif; }
+
+  .glass {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+  .glass-strong {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 16px;
+  }
+  
+  .login-screen { display: flex; justify-content: center; align-items: center; min-height: 90vh; }
+  .login-box { padding: 40px; width: 100%; max-width: 420px; text-align: center; }
+  .login-box h1 { font-size: 28px; margin-bottom: 10px; font-weight: 800; color: #fff; }
+  .login-box .subtitle { opacity: 0.8; margin-bottom: 30px; font-size: 15px; color: #94a3b8; }
+  .logo-svg { margin-bottom: 20px; }
+  
+  .input-group { margin-bottom: 18px; text-align: right; }
+  .input-group label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500; color: #cbd5e1; }
+  .input-group input, .input-group select, .input-group textarea {
+    width: 100%; padding: 12px 15px;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 12px; color: #fff; font-size: 15px; outline: none; transition: 0.3s;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .input-group input::placeholder, .input-group textarea::placeholder { color: rgba(148, 163, 184, 0.6); }
+  .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+    background: rgba(15, 23, 42, 0.8); border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  }
+  .input-group input[readonly] {
+    background: rgba(15, 23, 42, 0.3); color: #94a3b8; cursor: not-allowed; border-color: rgba(234, 179, 8, 0.35);
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
+  .input-group select option { background: #1e293b; color: #fff; }
+  
+  .btn {
+    padding: 12px 24px;
+    background: rgba(148, 163, 184, 0.15);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 12px; color: #e2e8f0; font-size: 15px; font-weight: 700;
+    cursor: pointer; transition: 0.3s; backdrop-filter: blur(10px);
+  }
+  .btn:hover { background: rgba(148, 163, 184, 0.25); transform: translateY(-2px); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .btn-primary { background: linear-gradient(135deg, #2563eb, #1d4ed8); border: none; color: #fff; }
+  .btn-primary:hover { box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); }
+  .btn-success { background: linear-gradient(135deg, #059669, #10b981); border: none; color: #f0fdf4; }
+  .btn-success:hover { box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4); }
+  .btn-block { width: 100%; }
+  .error-msg { color: #fecaca; background: rgba(239, 68, 68, 0.2); padding: 10px; border-radius: 10px; margin-top: 15px; display: none; font-size: 14px; }
+  
+  .dashboard { display: none; }
+  .dashboard.active { display: block; }
+  
+  .header {
+    padding: 20px 30px; margin-bottom: 25px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 15px;
+  }
+  .header h2 { font-size: 22px; font-weight: 700; color: #fff; }
+  .header .user-info { display: flex; align-items: center; gap: 15px; font-size: 14px; }
+  .header .user-badge { padding: 6px 14px; background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 20px; font-size: 13px; color: #93c5fd; }
+  .date-display { font-size: 14px; opacity: 0.8; margin-top: 5px; color: #94a3b8; }
+  
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 25px; }
+  .stat-card { padding: 25px; text-align: center; transition: 0.3s; }
+  .stat-card:hover { transform: translateY(-5px); border-color: rgba(59, 130, 246, 0.4); }
+  .stat-card .icon { font-size: 40px; margin-bottom: 10px; }
+  .stat-card .value { font-size: 32px; font-weight: 800; margin: 5px 0; color: #fff; }
+  .stat-card .label { font-size: 14px; color: #94a3b8; font-weight: 500; }
+  
+  .progress-container { background: rgba(15, 23, 42, 0.5); border-radius: 20px; height: 10px; overflow: hidden; margin-top: 10px; }
+  .progress-bar { height: 100%; background: linear-gradient(90deg, #10b981, #34d399); border-radius: 20px; transition: width 0.5s; }
+  
+  .section-title { font-size: 20px; margin: 30px 0 15px; padding-right: 15px; border-right: 4px solid #3b82f6; font-weight: 700; color: #e2e8f0; }
+  .clusters-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .cluster-card { padding: 22px; transition: 0.3s; cursor: pointer; }
+  .cluster-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); border-color: rgba(59, 130, 246, 0.4); }
+  .cluster-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 15px; padding-bottom: 12px; border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  }
+  .cluster-name { font-size: 18px; font-weight: 700; color: #fff; }
+  .cluster-head { font-size: 13px; opacity: 0.8; margin-top: 4px; color: #94a3b8; }
+  .cluster-badge { padding: 4px 12px; background: rgba(59, 130, 246, 0.2); border-radius: 15px; font-size: 13px; font-weight: 700; color: #93c5fd; }
+  .cluster-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px; font-size: 13px; }
+  .cluster-stats div { padding: 8px; background: rgba(15, 23, 42, 0.4); border-radius: 8px; color: #cbd5e1; text-align: center; }
+  .cluster-stats .num { font-weight: 800; font-size: 18px; color: #34d399; display: block; margin-top: 3px; }
+  
+  .cluster-date {
+    font-size: 12px; margin-top: 8px; color: #93c5fd; 
+    background: rgba(59, 130, 246, 0.1); padding: 4px 8px; border-radius: 6px; display: inline-block;
+  }
+  .cluster-notes {
+    background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.2);
+    padding: 10px; border-radius: 10px; font-size: 13px; margin-top: 10px; min-height: 40px; color: #fde68a;
+  }
+  
+  .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
+  .modal.active { display: flex; }
+  .modal-content { padding: 30px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; }
+  .modal-content h3 { margin-bottom: 20px; font-size: 20px; color: #fff; }
+  .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+  
+  .sync-bar {
+    padding: 12px 20px; margin-bottom: 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 10px; font-size: 13px;
+  }
+  .sync-indicator { display: flex; align-items: center; gap: 8px; color: #cbd5e1; }
+  .sync-dot { width: 10px; height: 10px; border-radius: 50%; background: #10b981; animation: pulse 2s infinite; }
+  .sync-dot.offline { background: #ef4444; animation: none; }
+  .sync-dot.saving { background: #f59e0b; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  
+  .toast-container { position: fixed; top: 20px; left: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; }
+  .toast { padding: 15px 25px; border-radius: 12px; color: #fff; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.5); animation: slideIn 0.3s ease-out; display: flex; align-items: center; gap: 10px; font-family: 'Cairo', sans-serif; }
+  .toast.success { background: linear-gradient(135deg, #059669, #10b981); color: #f0fdf4; }
+  .toast.error { background: linear-gradient(135deg, #dc2626, #ef4444); }
+  .toast.info { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+  @keyframes slideIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  .toast.fade-out { animation: fadeOut 0.3s ease-out forwards; }
+  @keyframes fadeOut { to { transform: translateX(-100%); opacity: 0; } }
+  
+  .security-notice {
+    background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3);
+    padding: 12px; border-radius: 10px; font-size: 12px; color: #93c5fd; margin-top: 20px; text-align: right;
+  }
+  
+  @media (max-width: 600px) {
+    .header { flex-direction: column; align-items: flex-start; }
+    .stat-card .value { font-size: 26px; }
+    .cluster-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<!-- ============ شاشة تسجيل الدخول ============ -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-box glass">
+    <div class="logo-svg">
+      <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15M9 5C9 6.10457 9.89543 7 11 7H13C14.1046 7 15 6.10457 15 5M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5M9 12L11 14L15 10" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h1>نظام متابعة التدقيق</h1>
+    <p class="subtitle">مديرية التربية والتعليم - إدلب (نسخة آمنة)</p>
+    
+    <div class="input-group">
+      <label>نوع الحساب</label>
+      <select id="loginType">
+        <option value="director">مدير نظام المتابعة</option>
+        <option value="head">رئيس شعبة التنمية الإدارية</option>
+      </select>
+    </div>
+    
+    <div class="input-group" id="clusterSelectGroup" style="display:none;">
+      <label>اختر المجمع</label>
+      <select id="loginCluster">
+        <option value="">-- اختر المجمع --</option>
+      </select>
+    </div>
+    
+    <div class="input-group">
+      <label>البريد الإلكتروني المسجل في النظام</label>
+      <input type="email" id="loginEmail" placeholder="example@edlib.sy" autocomplete="email">
+    </div>
+    
+    <div class="input-group">
+      <label>كلمة المرور</label>
+      <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    
+    <button class="btn btn-primary btn-block" id="loginBtn">🔐 تسجيل الدخول الآمن</button>
+    <div id="loginError" class="error-msg"></div>
+
+    <div class="security-notice">
+      <strong>🔒 ملاحظة أمنية:</strong><br>
+      تم نقل التحقق من كلمات المرور إلى خوادم Firebase الآمنة. <br>
+      يجب إنشاء حسابات البريد الإلكتروني المذكورة في دليل الإعداد داخل Firebase Console.
+    </div>
+  </div>
+</div>
+
+<!-- ============ لوحة المدير ============ -->
+<div id="directorDashboard" class="dashboard">
+  <div class="header glass">
+    <div>
+      <h2>‍💼 لوحة تحكم مدير نظام المتابعة</h2>
+      <div class="date-display" id="currentDate"></div>
+    </div>
+    <div class="user-info">
+      <span class="user-badge">👤 مدير النظام</span>
+      <button class="btn" id="logoutBtn1">🚪 خروج</button>
+    </div>
+  </div>
+  
+  <div class="sync-bar glass">
+    <div class="sync-indicator">
+      <span id="syncDot" class="sync-dot saving"></span>
+      <span id="syncStatus">⏳ جاري التحميل...</span>
+    </div>
+    <div>
+      <button class="btn" id="exportBtn">📥 تصدير</button>
+      <button class="btn" id="importBtn">📤 استيراد</button>
+      <input type="file" id="importFile" style="display:none" accept=".json">
+    </div>
+  </div>
+  
+  <div class="stats-grid" id="directorStats"></div>
+  <h3 class="section-title"> مؤشرات أداء المجمعات التربوية</h3>
+  <div class="clusters-grid" id="directorClusters"></div>
+</div>
+
+<!-- ============ لوحة رئيس الشعبة ============ -->
+<div id="headDashboard" class="dashboard">
+  <div class="header glass">
+    <div>
+      <h2 id="headTitle">📋 لوحة رئيس الشعبة</h2>
+      <div class="date-display" id="headDate"></div>
+    </div>
+    <div class="user-info">
+      <span class="user-badge" id="headBadge"></span>
+      <button class="btn" id="logoutBtn2">🚪 خروج</button>
+    </div>
+  </div>
+  
+  <div class="sync-bar glass">
+    <div class="sync-indicator">
+      <span id="headSyncDot" class="sync-dot saving"></span>
+      <span id="headSyncStatus">⏳ جاري التحميل...</span>
+    </div>
+  </div>
+  
+  <div class="stats-grid" id="headStats"></div>
+  
+  <div class="glass" style="padding:25px; margin-top:20px;">
+    <h3 style="margin-bottom:20px;">⚙️ تحديث بيانات المجمع اليومية</h3>
+    
+    <div class="input-group">
+      <label>تاريخ المتابعة اليومية</label>
+      <input type="date" id="followUpDate">
+    </div>
+    
+    <div class="input-group">
+      <label>عدد المدارس الكلي في المجمع (للعرض فقط)</label>
+      <input type="number" id="totalSchools" min="0" readonly>
+      <small style="color:#fbbf24; font-size:12px; display:block; margin-top:5px;" id="totalSchoolsHint">🔒 تعديل هذا العدد صلاحية حصرية لمدير نظام المتابعة</small>
+    </div>
+    
+    <div class="input-group">
+      <label>عدد المدارس المدققة اليوم (سيُضاف للإنجاز التراكمي)</label>
+      <input type="number" id="dailyAudited" min="0" placeholder="مثال: 5">
+    </div>
+    
+    <div class="input-group">
+      <label>الملاحظات / المعوقات</label>
+      <textarea id="notes" rows="4" placeholder="اكتب الملاحظات التي تعوق عملية التدقيق..."></textarea>
+    </div>
+    <button id="saveBtn" class="btn btn-success btn-block">💾 حفظ التحديثات</button>
+  </div>
+</div>
+
+<!-- ============ مودال التفاصيل ============ -->
+<div id="detailsModal" class="modal">
+  <div class="modal-content glass">
+    <h3 id="modalTitle">تفاصيل المجمع</h3>
+    <div id="modalBody"></div>
+    <div class="modal-actions">
+      <button class="btn btn-success" id="saveTotalBtn">💾 حفظ العدد الكلي</button>
+      <button class="btn btn-primary" id="closeModalBtn">إغلاق</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Firebase SDK ============ -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBnkGeFcUfnJbL0-gtkW4GrqC_J0-62oQs",
+  authDomain: "edlib-audit-tracker.firebaseapp.com",
+  databaseURL: "https://edlib-audit-tracker-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "edlib-audit-tracker",
+  storageBucket: "edlib-audit-tracker.firebasestorage.app",
+  messagingSenderId: "1074183028052",
+  appId: "1:1074183028052:web:73090d90976f9c97df9cc1"
+};
+
+let db = null;
+let auth = null;
+let firebaseReady = false;
+let currentData = {};
+let currentUser = null;
+let currentClusterId = null;
+let dataListener = null;
+let restPollTimer = null;
+let sdkChannelOk = false;
+
+try {
+  firebase.initializeApp(firebaseConfig);
+  db = firebase.database();
+  auth = firebase.auth();
+  firebaseReady = true;
+} catch (e) {
+  console.error("❌ Firebase init error:", e);
+}
+
+const USERS_MAP = {
+  'director@edlib.sy': { role: 'director', name: 'مدير نظام المتابعة' },
+  'idlib@edlib.sy': { role: 'head', clusterId: 'idlib', name: 'محمد عبد الكافي حميدي' },
+  'ariha@edlib.sy': { role: 'head', clusterId: 'ariha', name: 'معتز مصطفى كوبية' },
+  'sarmada@edlib.sy': { role: 'head', clusterId: 'sarmada', name: 'أحمد يحيى حزاني' },
+  'khansheikhoun@edlib.sy': { role: 'head', clusterId: 'khansheikhoun', name: 'أحمد رياض البكري' },
+  'kafrnabl@edlib.sy': { role: 'head', clusterId: 'kafrnabl', name: 'محمود اسماعيل العيسى' },
+  'qah@edlib.sy': { role: 'head', clusterId: 'qah', name: 'اسامة عوض حلاق' },
+  'maaratnuman@edlib.sy': { role: 'head', clusterId: 'maaratnuman', name: 'محمد عبد الوهاب عساف' },
+  'saraqib@edlib.sy': { role: 'head', clusterId: 'saraqib', name: 'ماهر ابراهيم الابراهيم' },
+  'maaratmisrin@edlib.sy': { role: 'head', clusterId: 'maaratmisrin', name: 'أحمد أمين قاسم الابراهيم' },
+  'jshrshghour@edlib.sy': { role: 'head', clusterId: 'jshrshghour', name: 'رشيد غسان الدكر' },
+  'harim@edlib.sy': { role: 'head', clusterId: 'harim', name: 'عبد الباسط نعسان رجوب' }
+};
+
+const CLUSTERS = Object.values(USERS_MAP).filter(u => u.role === 'head').map(u => {
+  const clusterKey = Object.keys(USERS_MAP).find(key => USERS_MAP[key].clusterId === u.clusterId);
+  return { id: u.clusterId, name: u.name, head: u.name, email: clusterKey };
+});
+
+const CLUSTER_NAMES = {
+  'idlib': 'مجمع إدلب', 'ariha': 'مجمع أريحا', 'sarmada': 'مجمع سرمدا',
+  'khansheikhoun': 'مجمع خان شيخون', 'kafrnabl': 'مجمع كفرنبل', 'qah': 'مجمع قاح',
+  'maaratnuman': 'مجمع معرة النعمان', 'saraqib': 'مجمع سراقب', 'maaratmisrin': 'مجمع معرتمصرين',
+  'jshrshghour': 'مجمع جسر الشغور', 'harim': 'مجمع حارم'
+};
+CLUSTERS.forEach(c => c.name = CLUSTER_NAMES[c.id] || c.name);
+
+function escapeHtml(str) {
+  return String(str ?? '').replace(/[&<>"']/g, ch => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[ch]));
+}
+
+function fmtDateTime(iso) {
+  const d = new Date(iso);
+  return isNaN(d) ? 'غير متاح' : d.toLocaleString('ar-EG');
+}
+
+function showToast(message, type = 'info') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = message;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.classList.add('fade-out');
+    setTimeout(() => toast.remove(), 300);
+  }, 4000);
+}
+
+function getEmptyData() {
+  const init = {};
+  CLUSTERS.forEach(c => {
+    init[c.id] = { totalSchools: 0, auditedSchools: 0, dailyAudited: 0, notes: '', followUpDate: '', lastUpdate: new Date().toISOString() };
+  });
+  return init;
+}
+
+function applyServerData(val) {
+  currentData = val || getEmptyData();
+  localStorage.setItem('edlib_audit_data', JSON.stringify(currentData));
+  CLUSTERS.forEach(c => {
+    if (!currentData[c.id]) {
+      currentData[c.id] = { totalSchools: 0, auditedSchools: 0, dailyAudited: 0, notes: '', followUpDate: '', lastUpdate: new Date().toISOString() };
+    }
+  });
+  renderCurrentView();
+}
+
+function updateSyncUI(state, extraMsg) {
+  const dots = [document.getElementById('syncDot'), document.getElementById('headSyncDot')];
+  const statuses = [document.getElementById('syncStatus'), document.getElementById('headSyncStatus')];
+  let text = '', cls = 'offline';
+  if (state === 'online')       { text = '🟢 متصل - مزامنة لحظية'; cls = ''; }
+  else if (state === 'rest')    { text = '🟢 متصل - تحديث كل 15 ثانية'; cls = ''; }
+  else if (state === 'saving')  { text = '🟡 جاري التحميل...'; cls = 'saving'; }
+  else if (state === 'error')   { text = extraMsg || '🔴 خطأ في الاتصال'; cls = 'offline'; }
+  dots.forEach(d => { if (d) d.className = 'sync-dot ' + cls; });
+  statuses.forEach(s => { if (s) s.textContent = text; });
+}
+
+/* ══════════ دوال REST ═══════════ */
+async function restFetch() {
+  const res = await fetch(firebaseConfig.databaseURL + '/audit_data.json');
+  if (!res.ok) throw new Error('REST_' + res.status);
+  return await res.json();
+}
+
+async function restPatch(path, obj) {
+  const res = await fetch(firebaseConfig.databaseURL + path + '.json', {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(obj)
+  });
+  if (!res.ok) throw new Error('REST_' + res.status);
+}
+
+async function restPut(path, obj) {
+  const res = await fetch(firebaseConfig.databaseURL + path + '.json', {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(obj)
+  });
+  if (!res.ok) throw new Error('REST_' + res.status);
+}
+
+function restPollStart() {
+  if (restPollTimer) return;
+  restPollTimer = setInterval(async () => {
+    if (!currentUser) return;
+    try { applyServerData(await restFetch()); } catch(e) {}
+  }, 15000);
+}
+function restPollStop() {
+  if (restPollTimer) { clearInterval(restPollTimer); restPollTimer = null; }
+}
+
+/* ═══════════ loadData: يبدأ بـ REST فوراً ═══════════ */
+function loadData() {
+  const localCache = localStorage.getItem('edlib_audit_data');
+  if (localCache) {
+    try {
+      currentData = JSON.parse(localCache);
+      renderCurrentView();
+    } catch(e) { console.error("Cache parse error", e); }
+  }
+
+  if (dataListener && firebaseReady) {
+    db.ref('audit_data').off('value', dataListener);
+    dataListener = null;
+  }
+
+  if (!firebaseReady) {
+    updateSyncUI('error', '⚪ Firebase غير مهيأ');
+    return;
+  }
+
+  updateSyncUI('saving');
+
+  // ✅ الخطوة 1: REST فوراً (القناة التي أثبتنا أنها تعمل)
+  restFetch().then(val => {
+    applyServerData(val);
+    updateSyncUI('rest');
+    restPollStart(); // تحديث تلقائي كل 15 ثانية
+  }).catch(err => {
+    console.error("REST fetch failed:", err);
+    updateSyncUI('error', '🔴 فشل الاتصال بـ REST');
+  });
+
+  // ✅ الخطوة 2: محاولة WebSocket في الخلفية (تحسين اختياري)
+  if (!sdkChannelOk) {
+    try {
+      dataListener = db.ref('audit_data').on('value', snapshot => {
+        sdkChannelOk = true;
+        restPollStop();
+        applyServerData(snapshot.val());
+        updateSyncUI('online');
+      }, error => {
+        console.warn("WebSocket listener error:", error);
+        // لا نفعل شيئاً — REST يعمل بالفعل
+      });
+    } catch(e) {
+      console.warn("WebSocket setup failed:", e);
+    }
+  }
+}
+
+function fillClusterSelect() {
+  const sel = document.getElementById('loginCluster');
+  sel.innerHTML = '<option value="">-- اختر المجمع --</option>';
+  CLUSTERS.forEach(c => {
+    sel.innerHTML += `<option value="${c.id}" data-email="${c.email}">${c.name}</option>`;
+  });
+}
+
+async function login() {
+  const type = document.getElementById('loginType').value;
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('loginPass').value;
+  const err = document.getElementById('loginError');
+  const btn = document.getElementById('loginBtn');
+  
+  err.style.display = 'none';
+  
+  if (!email || !pass) {
+    err.textContent = '❌ يرجى إدخال البريد الإلكتروني وكلمة المرور';
+    err.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '⏳ جاري التحقق...';
+
+  try {
+    const userCredential = await auth.signInWithEmailAndPassword(email, pass);
+    const user = userCredential.user;
+    
+    const userInfo = USERS_MAP[email];
+    if (!userInfo) {
+      await auth.signOut();
+      throw new Error("هذا البريد غير مسجل في نظام المجمعات");
+    }
+
+    if (type === 'director' && userInfo.role !== 'director') {
+      await auth.signOut();
+      throw new Error("هذا الحساب مخصص لرؤساء الشعب وليس للمدير");
+    }
+    if (type === 'head' && userInfo.role !== 'head') {
+      await auth.signOut();
+      throw new Error("هذا الحساب مخصص لمدير نظام المتابعة");
+    }
+
+    currentUser = { ...userInfo, uid: user.uid };
+    
+    if (userInfo.role === 'head') {
+      currentClusterId = userInfo.clusterId;
+      showHeadDashboard();
+    } else {
+      showDirectorDashboard();
+    }
+    showToast(` مرحباً بك، ${userInfo.name}`, 'success');
+    
+  } catch (error) {
+    console.error("Login error:", error);
+    let msg = '❌ فشل تسجيل الدخول. تحقق من البيانات.';
+    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-email' || error.code === 'auth/invalid-credential') {
+      msg = '❌ البريد الإلكتروني أو كلمة المرور غير صحيحة';
+    } else if (error.code === 'auth/operation-not-allowed') {
+      msg = '❌ خدمة Email/Password غير مفعلة في Firebase Console';
+    } else if (error.code === 'auth/too-many-requests') {
+      msg = '❌ محاولات كثيرة متتالية، انتظر 15 دقيقة ثم أعد المحاولة';
+    } else if (error.message && error.message.includes("غير مسجل")) {
+      msg = '❌ ' + error.message;
+    }
+    err.textContent = msg;
+    err.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🔐 تسجيل الدخول الآمن';
+  }
+}
+
+function logout() {
+  if (dataListener && firebaseReady) {
+    db.ref('audit_data').off('value', dataListener);
+    dataListener = null;
+  }
+  restPollStop();
+  if (firebaseReady) auth.signOut();
+  
+  currentUser = null;
+  currentClusterId = null;
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('directorDashboard').classList.remove('active');
+  document.getElementById('headDashboard').classList.remove('active');
+  document.getElementById('loginEmail').value = '';
+  document.getElementById('loginPass').value = '';
+  document.getElementById('loginCluster').value = '';
+  document.getElementById('loginType').value = 'director';
+  document.getElementById('clusterSelectGroup').style.display = 'none';
+}
+
+function showDirectorDashboard() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('directorDashboard').classList.add('active');
+  loadData();
+}
+
+function showHeadDashboard() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('headDashboard').classList.add('active');
+  const safeName = escapeHtml(currentUser.name);
+  document.getElementById('headTitle').textContent = '📋 ' + safeName;
+  document.getElementById('headBadge').textContent = '👤 ' + safeName;
+  loadData();
+}
+
+function renderCurrentView() {
+  if (currentUser?.role === 'director') renderDirectorView();
+  if (currentUser?.role === 'head') renderHeadView();
+}
+
+function renderDirectorView() {
+  const now = new Date();
+  document.getElementById('currentDate').textContent = '📅 ' + now.toLocaleDateString('ar-EG', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  
+  let totalSchools = 0, totalAudited = 0, totalDailyAudited = 0;
+  CLUSTERS.forEach(c => {
+    totalSchools += currentData[c.id]?.totalSchools || 0;
+    totalAudited += currentData[c.id]?.auditedSchools || 0;
+    totalDailyAudited += currentData[c.id]?.dailyAudited || 0;
+  });
+  const percentage = totalSchools > 0 ? ((totalAudited / totalSchools) * 100).toFixed(1) : 0;
+  
+  document.getElementById('directorStats').innerHTML = `
+    <div class="stat-card glass-strong">
+      <div class="icon">🏢</div><div class="label">عدد المجمعات</div><div class="value">${CLUSTERS.length}</div>
+    </div>
+    <div class="stat-card glass-strong">
+      <div class="icon">🏫</div><div class="label">إجمالي المدارس</div><div class="value">${totalSchools}</div>
+    </div>
+    <div class="stat-card glass-strong">
+      <div class="icon">📊</div><div class="label">إجمالي الإنجاز التراكمي</div><div class="value">${totalAudited}</div>
+    </div>
+    <div class="stat-card glass-strong">
+      <div class="icon">📝</div><div class="label">إجمالي المدققة اليوم</div><div class="value">${totalDailyAudited}</div>
+    </div>
+    <div class="stat-card glass-strong">
+      <div class="icon">📈</div><div class="label">نسبة الإنجاز العامة</div><div class="value">${percentage}%</div>
+      <div class="progress-container"><div class="progress-bar" style="width:${percentage}%"></div></div>
+    </div>
+  `;
+  
+  let clustersHTML = '';
+  CLUSTERS.forEach(c => {
+    const d = currentData[c.id] || {};
+    const pct = d.totalSchools > 0 ? ((d.auditedSchools / d.totalSchools) * 100).toFixed(1) : 0;
+    const badgeColor = pct >= 75 ? 'rgba(16, 185, 129, 0.2)' : pct >= 40 ? 'rgba(234, 179, 8, 0.2)' : 'rgba(239, 68, 68, 0.2)';
+    const textColor = pct >= 75 ? '#34d399' : pct >= 40 ? '#fbbf24' : '#f87171';
+    clustersHTML += `
+      <div class="cluster-card glass-strong" data-id="${c.id}">
+        <div class="cluster-header">
+          <div>
+            <div class="cluster-name">${c.name}</div>
+            <div class="cluster-head">👤 ${c.head}</div>
+          </div>
+          <span class="cluster-badge" style="background:${badgeColor}; color:${textColor};">${pct}%</span>
+        </div>
+        <div class="cluster-stats">
+          <div>🏫 الكلي<span class="num">${d.totalSchools || 0}</span></div>
+          <div>📊 تراكمي<span class="num">${d.auditedSchools || 0}</span></div>
+          <div>📝 اليوم<span class="num">${d.dailyAudited || 0}</span></div>
+        </div>
+        <div class="progress-container"><div class="progress-bar" style="width:${pct}%"></div></div>
+        ${d.followUpDate ? `<div class="cluster-date">📅 تاريخ المتابعة: ${d.followUpDate}</div>` : ''}
+        ${d.notes ? `<div class="cluster-notes">${escapeHtml(d.notes)}</div>` : ''}
+      </div>
+    `;
+  });
+  document.getElementById('directorClusters').innerHTML = clustersHTML;
+  document.querySelectorAll('.cluster-card').forEach(card => {
+    card.addEventListener('click', () => showClusterDetails(card.dataset.id));
+  });
+}
+
+let currentClusterIdForEdit = null;
+function showClusterDetails(id) {
+  currentClusterIdForEdit = id;
+  const c = CLUSTERS.find(x => x.id === id);
+  const d = currentData[id] || {};
+  const pct = d.totalSchools > 0 ? ((d.auditedSchools / d.totalSchools) * 100).toFixed(1) : 0;
+  document.getElementById('modalTitle').textContent = c.name;
+  document.getElementById('modalBody').innerHTML = `
+    <div style="line-height:2; font-size:15px; color: #cbd5e1;">
+      <p><strong>👤 رئيس الشعبة:</strong> ${c.head}</p>
+      <p><strong>📅 تاريخ المتابعة:</strong> ${d.followUpDate || 'لم يحدد'}</p>
+      <p><strong> إجمالي المدارس:</strong> ${d.totalSchools || 0}</p>
+      <p><strong>📊 إجمالي الإنجاز التراكمي:</strong> ${d.auditedSchools || 0}</p>
+      <p><strong>📝 المدارس المدققة اليوم:</strong> ${d.dailyAudited || 0}</p>
+      <p><strong>📈 نسبة الإنجاز:</strong> ${pct}%</p>
+      <p><strong>🕐 آخر تحديث للنظام:</strong> ${fmtDateTime(d.lastUpdate)}</p>
+      <p><strong>📌 الملاحظات:</strong><br>${escapeHtml(d.notes) || 'لا توجد ملاحظات'}</p>
+    </div>
+    <div class="input-group" style="margin-top:15px;">
+      <label>✏️ عدد المدارس الكلي (صلاحية حصرية لمدير النظام)</label>
+      <input type="number" id="editTotalSchools" min="0" value="${d.totalSchools || 0}">
+      <small style="color:#fbbf24; font-size:12px; display:block; margin-top:5px;">⚠️ لا يمكن حفظ عدد أقل من الإنجاز التراكمي الحالي (${d.auditedSchools || 0})</small>
+    </div>
+  `;
+  document.getElementById('detailsModal').classList.add('active');
+  document.getElementById('saveTotalBtn').disabled = false;
+}
+
+function renderHeadView() {
+  const d = currentData[currentClusterId] || {};
+  const now = new Date();
+  document.getElementById('headDate').textContent = '📅 ' + now.toLocaleDateString('ar-EG', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  const pct = d.totalSchools > 0 ? ((d.auditedSchools / d.totalSchools) * 100).toFixed(1) : 0;
+  const remaining = (d.totalSchools || 0) - (d.auditedSchools || 0);
+  
+  document.getElementById('headStats').innerHTML = `
+    <div class="stat-card glass-strong">
+      <div class="icon">🏫</div><div class="label">إجمالي المدارس</div><div class="value">${d.totalSchools || 0}</div>
+    </div>
+    <div class="stat-card glass-strong">
+      <div class="icon">📊</div><div class="label">إجمالي الإنجاز التراكمي</div><div class="value">${d.auditedSchools || 0}</div>
+    </div>
+    <div class="stat-card glass-strong">
+      <div class="icon">📝</div><div class="label">المدققة اليوم</div><div class="value">${d.dailyAudited || 0}</div>
+    </div>
+    <div class="stat-card glass-strong">
+      <div class="icon">⏳</div><div class="label">المتبقية</div><div class="value">${remaining > 0 ? remaining : 0}</div>
+    </div>
+    <div class="stat-card glass-strong">
+      <div class="icon">📈</div><div class="label">نسبة الإنجاز</div><div class="value">${pct}%</div>
+      <div class="progress-container"><div class="progress-bar" style="width:${pct}%"></div></div>
+    </div>
+  `;
+  
+  const totalInput = document.getElementById('totalSchools');
+  totalInput.value = d.totalSchools || 0;
+  totalInput.readOnly = true;
+  
+  document.getElementById('dailyAudited').value = 0;
+  document.getElementById('notes').value = d.notes || '';
+  
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('followUpDate').max = today;
+  document.getElementById('followUpDate').value = d.followUpDate || today;
+}
+
+async function saveHeadData() {
+  const daily = parseInt(document.getElementById('dailyAudited').value) || 0;
+  const notes = document.getElementById('notes').value.trim();
+  const followUpDate = document.getElementById('followUpDate').value;
+  
+  if (daily < 0) return showToast('⚠️ لا يمكن إدخال أرقام سالبة', 'error');
+  if (!followUpDate) return showToast('⚠️ يرجى تحديد تاريخ المتابعة', 'error');
+  
+  const oldData = currentData[currentClusterId] || {};
+  const prevTotal = oldData.totalSchools || 0;
+  const prevAudited = oldData.auditedSchools || 0;
+  
+  if (prevTotal === 0) {
+    return showToast('⚠️ لم يحدد مدير النظام عدد المدارس الكلي لمجمعك بعد — تواصل معه', 'error');
+  }
+  if (daily > 0 && prevAudited + daily > prevTotal) {
+    return showToast('⚠️ الإنجاز التراكمي سيتجاوز العدد الكلي (' + prevTotal + ')', 'error');
+  }
+
+  const btn = document.getElementById('saveBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ جاري الحفظ الآمن...';
+
+  try {
+    if (sdkChannelOk) {
+      try {
+        if (daily > 0) {
+          const auditedRef = db.ref('audit_data/' + currentClusterId + '/auditedSchools');
+          const res = await auditedRef.transaction(prev => {
+            const p = prev || 0;
+            const nv = p + daily;
+            if (nv > prevTotal) return;
+            return nv;
+          });
+          if (!res.committed) throw new Error('EXCEEDS_TOTAL');
+        }
+        await db.ref('audit_data/' + currentClusterId).update({
+          dailyAudited: daily, notes: notes, followUpDate: followUpDate,
+          lastUpdate: new Date().toISOString()
+        });
+      } catch (sdkErr) {
+        if (sdkErr && sdkErr.message === 'EXCEEDS_TOTAL') throw sdkErr;
+        await saveHeadViaRest(daily, notes, followUpDate, prevTotal);
+      }
+    } else {
+      await saveHeadViaRest(daily, notes, followUpDate, prevTotal);
+    }
+    showToast('✅ تم حفظ التحديثات بنجاح', 'success');
+    document.getElementById('dailyAudited').value = 0;
+  } catch (error) {
+    console.error("Save failed:", error);
+    if (error && error.message === 'EXCEEDS_TOTAL') {
+      showToast('⚠️ الإنجاز التراكمي سيتجاوز العدد الكلي (تم إلغاء الحفظ)', 'error');
+    } else {
+      showToast('❌ فشل في الحفظ، تحقق من الاتصال', 'error');
+    }
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '💾 حفظ التحديثات';
+  }
+}
+
+async function saveHeadViaRest(daily, notes, followUpDate, prevTotal) {
+  const cur = (await restFetch()) || {};
+  const base = cur[currentClusterId] || {};
+  const pAudited = base.auditedSchools || 0;
+  const pTotal = base.totalSchools || prevTotal;
+  if (daily > 0 && pAudited + daily > pTotal) throw new Error('EXCEEDS_TOTAL');
+  await restPatch('/audit_data/' + currentClusterId, {
+    auditedSchools: pAudited + daily,
+    dailyAudited: daily,
+    notes: notes,
+    followUpDate: followUpDate,
+    lastUpdate: new Date().toISOString()
+  });
+}
+
+async function saveTotalSchools(clusterId) {
+  const input = document.getElementById('editTotalSchools');
+  const btn = document.getElementById('saveTotalBtn');
+  const newTotal = parseInt(input.value);
+  if (!Number.isFinite(newTotal) || newTotal < 0) {
+    return showToast('⚠️ يرجى إدخال عدد صحيح غير سالب', 'error');
+  }
+  const audited = (currentData[clusterId] || {}).auditedSchools || 0;
+  if (newTotal < audited) {
+    return showToast('⚠️ لا يمكن حفظ عدد أقل من الإنجاز التراكمي الحالي (' + audited + ')', 'error');
+  }
+  btn.disabled = true;
+  btn.textContent = '⏳ جاري الحفظ...';
+  try {
+    const payload = { totalSchools: newTotal, lastUpdate: new Date().toISOString() };
+    await restPatch('/audit_data/' + clusterId, payload);
+    showToast('✅ تم تحديث عدد المدارس الكلي بنجاح', 'success');
+    document.getElementById('detailsModal').classList.remove('active');
+  } catch (err) {
+    console.error("SaveTotal failed:", err);
+    showToast('❌ فشل في الحفظ، تحقق من الاتصال', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '💾 حفظ العدد الكلي';
+  }
+}
+
+function exportData() {
+  try {
+    const blob = new Blob([JSON.stringify(currentData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `edlib_audit_${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('📥 تم تصدير البيانات بنجاح', 'success');
+  } catch (e) {
+    showToast('❌ فشل في تصدير البيانات', 'error');
+  }
+}
+
+function importData(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  
+  const reader = new FileReader();
+  reader.onload = async ev => {
+    try {
+      const imported = JSON.parse(ev.target.result);
+      
+      if (typeof imported !== 'object' || imported === null || Array.isArray(imported)) {
+        throw new Error("تنسيق الملف غير صالح");
+      }
+      const KNOWN_IDS = CLUSTERS.map(c => c.id);
+      for (const [key, val] of Object.entries(imported)) {
+        if (!KNOWN_IDS.includes(key) || typeof val !== 'object' || val === null) {
+          throw new Error("يحتوي الملف على مجمع غير معروف أو تنسيق تالف: " + key);
+        }
+        for (const field of ['totalSchools', 'auditedSchools', 'dailyAudited']) {
+          if (val[field] !== undefined && (!Number.isFinite(val[field]) || val[field] < 0)) {
+            throw new Error(`قيمة رقمية غير صالحة في ${key}.${field}`);
+          }
+        }
+      }
+
+      if (confirm('⚠️ سيتم استبدال البيانات الحالية في السحابة والمحلية. هل تريد المتابعة؟')) {
+        localStorage.setItem('edlib_audit_data', JSON.stringify(imported));
+        await restPut('/audit_data', imported);
+        applyServerData(imported);
+        showToast('✅ تم استيراد البيانات بنجاح', 'success');
+      }
+    } catch (err) {
+      console.error("Import error:", err);
+      showToast('❌ ملف غير صالح أو تالف، يرجى التحقق من صيغة JSON', 'error');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+if (firebaseReady) {
+  auth.onAuthStateChanged(user => {
+    if (!user) return;
+    const userInfo = USERS_MAP[(user.email || '').toLowerCase()];
+    if (!userInfo) return;
+    currentUser = { ...userInfo, uid: user.uid };
+    if (userInfo.role === 'head') {
+      currentClusterId = userInfo.clusterId;
+      showHeadDashboard();
+    } else {
+      showDirectorDashboard();
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  fillClusterSelect();
+  
+  const loginType = document.getElementById('loginType');
+  const loginCluster = document.getElementById('loginCluster');
+  const loginEmail = document.getElementById('loginEmail');
+  
+  loginEmail.value = 'director@edlib.sy';
+  loginEmail.setAttribute('readonly', 'true');
+  
+  loginType.addEventListener('change', e => {
+    const isHead = e.target.value === 'head';
+    document.getElementById('clusterSelectGroup').style.display = isHead ? 'block' : 'none';
+    
+    if (isHead) {
+      loginEmail.value = '';
+      loginEmail.removeAttribute('readonly');
+      loginCluster.value = '';
+    } else {
+      loginEmail.value = 'director@edlib.sy';
+      loginEmail.setAttribute('readonly', 'true');
+    }
+  });
+  
+  loginCluster.addEventListener('change', e => {
+    const selectedOption = e.target.options[e.target.selectedIndex];
+    const email = selectedOption.getAttribute('data-email');
+    if (email) {
+      loginEmail.value = email;
+      loginEmail.setAttribute('readonly', 'true');
+    } else {
+      loginEmail.value = '';
+      loginEmail.removeAttribute('readonly');
+    }
+  });
+  
+  document.getElementById('loginBtn').addEventListener('click', login);
+  document.getElementById('logoutBtn1').addEventListener('click', logout);
+  document.getElementById('logoutBtn2').addEventListener('click', logout);
+  document.getElementById('saveBtn').addEventListener('click', saveHeadData);
+  document.getElementById('closeModalBtn').addEventListener('click', () => document.getElementById('detailsModal').classList.remove('active'));
+  document.getElementById('saveTotalBtn').addEventListener('click', () => {
+    if (currentUser && currentUser.role === 'director' && currentClusterIdForEdit) {
+      saveTotalSchools(currentClusterIdForEdit);
+    } else {
+      showToast('⚠️ هذه الصلاحية حصرية لمدير نظام المتابعة', 'error');
+    }
+  });
+  document.getElementById('exportBtn').addEventListener('click', exportData);
+  document.getElementById('importBtn').addEventListener('click', () => document.getElementById('importFile').click());
+  document.getElementById('importFile').addEventListener('change', importData);
+  
+  document.getElementById('loginPass').addEventListener('keypress', e => {
+    if (e.key === 'Enter') login();
+  });
+});
+</script>
+</body>
+</html>
