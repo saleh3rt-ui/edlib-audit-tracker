@@ -1,74 +1,47 @@
-<!DOCTYPE html>
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <style>
+                body {
+                  background-color: white; /* Ensure the iframe has a white background */
+                }
+
+                
+              </style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نظام متابعة التدقيق - مديرية التربية إدلب (آمن)</title>
-
+<title>نظام متابعة التدقيق - مديرية التربية إدلب</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Tajawal', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-    background-attachment: fixed;
-    color: #f8fafc;
-    padding: 15px;
-  }
+  body { font-family: 'Tajawal', sans-serif; min-height: 100vh; overflow-x: hidden; background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%); background-attachment: fixed; color: #f8fafc; padding: 15px; }
   h1, h2, h3, .cluster-name, .stat-card .value, .btn { font-family: 'Cairo', sans-serif; }
-
-  .glass {
-    background: rgba(30, 41, 59, 0.6);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(148, 163, 184, 0.15);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  }
-  .glass-strong {
-    background: rgba(15, 23, 42, 0.7);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    border-radius: 12px;
-  }
-  
+  .glass { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(148, 163, 184, 0.15); border-radius: 16px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
+  .glass-strong { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 12px; }
   .login-screen { display: flex; justify-content: center; align-items: center; min-height: 90vh; }
   .login-box { padding: 30px; width: 100%; max-width: 420px; text-align: center; }
   .login-box h1 { font-size: 26px; margin-bottom: 10px; font-weight: 800; color: #fff; }
   .login-box .subtitle { opacity: 0.8; margin-bottom: 20px; font-size: 14px; color: #94a3b8; }
   .logo-svg { margin-bottom: 15px; }
-  
   .input-group { margin-bottom: 14px; text-align: right; }
   .input-group label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 500; color: #cbd5e1; }
-  .input-group input, .input-group select, .input-group textarea {
-    width: 100%; padding: 10px 12px;
-    background: rgba(15, 23, 42, 0.5);
-    border: 1px solid rgba(148, 163, 184, 0.3);
-    border-radius: 10px; color: #fff; font-size: 14px; outline: none; transition: 0.3s;
-    font-family: 'Tajawal', sans-serif;
-  }
+  .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 10px 12px; background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 10px; color: #fff; font-size: 14px; outline: none; transition: 0.3s; font-family: 'Tajawal', sans-serif; }
   .input-group input::placeholder, .input-group textarea::placeholder { color: rgba(148, 163, 184, 0.6); }
-  .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
-    background: rgba(15, 23, 42, 0.8); border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-  }
-  .input-group input[readonly] {
-    background: rgba(15, 23, 42, 0.3); color: #94a3b8; cursor: not-allowed; border-color: rgba(234, 179, 8, 0.35);
-  }
+  .input-group input:focus, .input-group select:focus, .input-group textarea:focus { background: rgba(15, 23, 42, 0.8); border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); }
+  .input-group input[readonly] { background: rgba(15, 23, 42, 0.3); color: #94a3b8; cursor: not-allowed; border-color: rgba(234, 179, 8, 0.35); }
   input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
   .input-group select option { background: #1e293b; color: #fff; }
-  
-  .btn {
-    padding: 10px 18px;
-    background: rgba(148, 163, 184, 0.15);
-    border: 1px solid rgba(148, 163, 184, 0.3);
-    border-radius: 10px; color: #e2e8f0; font-size: 14px; font-weight: 700;
-    cursor: pointer; transition: 0.3s; backdrop-filter: blur(10px);
-  }
+  .btn { padding: 10px 18px; background: rgba(148, 163, 184, 0.15); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 10px; color: #e2e8f0; font-size: 14px; font-weight: 700; cursor: pointer; transition: 0.3s; backdrop-filter: blur(10px); }
   .btn:hover { background: rgba(148, 163, 184, 0.25); transform: translateY(-2px); }
   .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
   .btn-primary { background: linear-gradient(135deg, #2563eb, #1d4ed8); border: none; color: #fff; }
@@ -81,99 +54,51 @@
   .btn-warning:hover { box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4); }
   .btn-block { width: 100%; }
   .error-msg { color: #fecaca; background: rgba(239, 68, 68, 0.2); padding: 8px; border-radius: 8px; margin-top: 10px; display: none; font-size: 13px; }
-  
   .dashboard { display: none; }
   .dashboard.active { display: block; }
-  
-  .header {
-    padding: 15px 20px; margin-bottom: 15px;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 10px;
-  }
+  .header { padding: 15px 20px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
   .header h2 { font-size: 20px; font-weight: 700; color: #fff; }
   .header .user-info { display: flex; align-items: center; gap: 12px; font-size: 13px; }
   .header .user-badge { padding: 4px 12px; background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 20px; font-size: 12px; color: #93c5fd; }
   .date-display { font-size: 13px; opacity: 0.8; margin-top: 4px; color: #94a3b8; }
-  
   .stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 15px; }
   .stat-card { padding: 15px 10px; text-align: center; transition: 0.3s; }
   .stat-card:hover { transform: translateY(-3px); border-color: rgba(59, 130, 246, 0.4); }
   .stat-card .icon { font-size: 28px; margin-bottom: 6px; }
   .stat-card .value { font-size: 24px; font-weight: 800; margin: 4px 0; color: #fff; }
   .stat-card .label { font-size: 12px; color: #94a3b8; font-weight: 500; }
-  
   .progress-container { background: rgba(15, 23, 42, 0.5); border-radius: 20px; height: 8px; overflow: hidden; margin-top: 8px; }
   .progress-bar { height: 100%; background: linear-gradient(90deg, #10b981, #34d399); border-radius: 20px; transition: width 0.5s; }
-  
   .section-title { font-size: 18px; margin: 15px 0 10px; padding-right: 12px; border-right: 4px solid #3b82f6; font-weight: 700; color: #e2e8f0; }
-  
   .clusters-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
   .cluster-card { padding: 12px; transition: 0.3s; cursor: pointer; }
   .cluster-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.5); border-color: rgba(59, 130, 246, 0.4); }
-  .cluster-header {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-  }
+  .cluster-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid rgba(148, 163, 184, 0.2); }
   .cluster-name { font-size: 15px; font-weight: 700; color: #fff; }
   .cluster-head { font-size: 11px; opacity: 0.8; margin-top: 2px; color: #94a3b8; }
   .cluster-badge { padding: 3px 8px; background: rgba(59, 130, 246, 0.2); border-radius: 12px; font-size: 11px; font-weight: 700; color: #93c5fd; }
-  
   .cluster-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 8px; font-size: 11px; }
   .cluster-stats div { padding: 4px; background: rgba(15, 23, 42, 0.4); border-radius: 6px; color: #cbd5e1; text-align: center; }
   .cluster-stats .num { font-weight: 800; font-size: 15px; color: #34d399; display: block; margin-top: 2px; }
-  
-  .cluster-date {
-    font-size: 10px; margin-top: 6px; color: #93c5fd; 
-    background: rgba(59, 130, 246, 0.1); padding: 2px 6px; border-radius: 4px; display: inline-block;
-  }
-  
-  .cluster-notes {
-    background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.2);
-    padding: 6px; border-radius: 8px; font-size: 11px; margin-top: 6px; 
-    max-height: 36px; overflow: hidden; text-overflow: ellipsis;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-    color: #fde68a;
-  }
-  
+  .cluster-date { font-size: 10px; margin-top: 6px; color: #93c5fd; background: rgba(59, 130, 246, 0.1); padding: 2px 6px; border-radius: 4px; display: inline-block; }
+  .cluster-notes { background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.2); padding: 6px; border-radius: 8px; font-size: 11px; margin-top: 6px; max-height: 36px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; color: #fde68a; }
   .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
   .modal.active { display: flex; }
   .modal-content { padding: 25px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; }
   .modal-content h3 { margin-bottom: 15px; font-size: 18px; color: #fff; }
   .modal-actions { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
   .modal-actions .btn { flex: 1; min-width: 120px; }
-  
-  .director-controls {
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(59, 130, 246, 0.3);
-    border-radius: 10px;
-    padding: 15px;
-    margin-top: 15px;
-  }
-  .director-controls h4 {
-    font-size: 14px;
-    color: #93c5fd;
-    margin-bottom: 12px;
-    font-weight: 700;
-  }
-  .director-controls .input-group { margin-bottom: 10px; }
-  .director-controls .btn-group {
-    display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;
-  }
-  .director-controls .btn-group .btn {
-    flex: 1; min-width: 100px; font-size: 12px; padding: 8px 12px;
-  }
-  
-  .sync-bar {
-    padding: 10px 15px; margin-bottom: 15px;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 10px; font-size: 12px;
-  }
+  .director-controls { background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05)); border: 2px solid rgba(59, 130, 246, 0.4); border-radius: 12px; padding: 18px; margin-top: 20px; }
+  .director-controls h4 { font-size: 15px; color: #93c5fd; margin-bottom: 15px; font-weight: 700; text-align: center; padding-bottom: 10px; border-bottom: 1px solid rgba(59, 130, 246, 0.3); }
+  .director-controls .input-group { margin-bottom: 12px; }
+  .director-controls .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .director-controls .btn-group .btn { font-size: 13px; padding: 10px 12px; font-weight: 700; }
+  .sync-bar { padding: 10px 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 12px; }
   .sync-indicator { display: flex; align-items: center; gap: 6px; color: #cbd5e1; }
   .sync-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; animation: pulse 2s infinite; }
   .sync-dot.offline { background: #ef4444; animation: none; }
   .sync-dot.saving { background: #f59e0b; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-  
   .toast-container { position: fixed; top: 15px; left: 15px; z-index: 2000; display: flex; flex-direction: column; gap: 8px; }
   .toast { padding: 12px 20px; border-radius: 10px; color: #fff; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.5); animation: slideIn 0.3s ease-out; display: flex; align-items: center; gap: 8px; font-family: 'Cairo', sans-serif; font-size: 13px; }
   .toast.success { background: linear-gradient(135deg, #059669, #10b981); color: #f0fdf4; }
@@ -183,23 +108,9 @@
   @keyframes slideIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
   .toast.fade-out { animation: fadeOut 0.3s ease-out forwards; }
   @keyframes fadeOut { to { transform: translateX(-100%); opacity: 0; } }
-  
-  .security-notice {
-    background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3);
-    padding: 10px; border-radius: 8px; font-size: 11px; color: #93c5fd; margin-top: 15px; text-align: right;
-  }
-  
-  @media (max-width: 1024px) {
-    body { overflow-y: auto; }
-    .stats-grid { grid-template-columns: repeat(3, 1fr); }
-    .clusters-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
-  }
-  @media (max-width: 600px) {
-    .header { flex-direction: column; align-items: flex-start; }
-    .stat-card .value { font-size: 20px; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .cluster-stats { grid-template-columns: 1fr 1fr; }
-  }
+  .security-notice { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); padding: 10px; border-radius: 8px; font-size: 11px; color: #93c5fd; margin-top: 15px; text-align: right; }
+  @media (max-width: 1024px) { body { overflow-y: auto; } .stats-grid { grid-template-columns: repeat(3, 1fr); } .clusters-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); } }
+  @media (max-width: 600px) { .header { flex-direction: column; align-items: flex-start; } .stat-card .value { font-size: 20px; } .stats-grid { grid-template-columns: repeat(2, 1fr); } .cluster-stats { grid-template-columns: 1fr 1fr; } .director-controls .btn-group { grid-template-columns: 1fr; } }
 </style>
 <base target="_blank">
 </head>
@@ -216,7 +127,6 @@
     </div>
     <h1>نظام متابعة التدقيق</h1>
     <p class="subtitle">مديرية التربية والتعليم - إدلب (نسخة آمنة)</p>
-    
     <div class="input-group">
       <label>نوع الحساب</label>
       <select id="loginType">
@@ -224,27 +134,20 @@
         <option value="head">رئيس شعبة التنمية الإدارية</option>
       </select>
     </div>
-    
     <div class="input-group" id="clusterSelectGroup" style="display:none;">
       <label>اختر المجمع</label>
-      <select id="loginCluster">
-        <option value="">-- اختر المجمع --</option>
-      </select>
+      <select id="loginCluster"><option value="">-- اختر المجمع --</option></select>
     </div>
-    
     <div class="input-group">
       <label>البريد الإلكتروني المسجل في النظام</label>
       <input type="email" id="loginEmail" placeholder="example@edlib.sy" autocomplete="email">
     </div>
-    
     <div class="input-group">
       <label>كلمة المرور</label>
       <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password">
     </div>
-    
-    <button class="btn btn-primary btn-block" id="loginBtn"> تسجيل الدخول الآمن</button>
+    <button class="btn btn-primary btn-block" id="loginBtn">🔐 تسجيل الدخول الآمن</button>
     <div id="loginError" class="error-msg"></div>
-
     <div class="security-notice">
       <strong>🔒 ملاحظة أمنية:</strong><br>
       تم نقل التحقق من كلمات المرور إلى خوادم Firebase الآمنة.
@@ -255,7 +158,7 @@
 <div id="directorDashboard" class="dashboard">
   <div class="header glass">
     <div>
-      <h2>👨‍ لوحة تحكم مدير نظام المتابعة</h2>
+      <h2>👨‍💼 لوحة تحكم مدير نظام المتابعة</h2>
       <div class="date-display" id="currentDate"></div>
     </div>
     <div class="user-info">
@@ -263,19 +166,17 @@
       <button class="btn" id="logoutBtn1">🚪 خروج</button>
     </div>
   </div>
-  
   <div class="sync-bar glass">
     <div class="sync-indicator">
-      <span id="syncDot" class="sync-dot offline"></span>
-      <span id="syncStatus">⚪ في انتظار البيانات</span>
+      <span id="syncDot" class="sync-dot saving"></span>
+      <span id="syncStatus">🟢 متصل</span>
     </div>
     <div>
-      <button class="btn" id="exportBtn">📥 تصدير JSON</button>
-      <button class="btn" id="importBtn"> استيراد</button>
+      <button class="btn" id="exportBtn"> تصدير JSON</button>
+      <button class="btn" id="importBtn">📤 استيراد</button>
       <input type="file" id="importFile" style="display:none" accept=".json">
     </div>
   </div>
-  
   <div class="stats-grid" id="directorStats"></div>
   <h3 class="section-title">📊 مؤشرات أداء المجمعات التربوية</h3>
   <div class="clusters-grid" id="directorClusters"></div>
@@ -289,38 +190,31 @@
     </div>
     <div class="user-info">
       <span class="user-badge" id="headBadge"></span>
-      <button class="btn" id="logoutBtn2">🚪 خروج</button>
+      <button class="btn" id="logoutBtn2"> خروج</button>
     </div>
   </div>
-  
   <div class="sync-bar glass">
     <div class="sync-indicator">
-      <span id="headSyncDot" class="sync-dot offline"></span>
-      <span id="headSyncStatus">⚪ في انتظار البيانات</span>
+      <span id="headSyncDot" class="sync-dot saving"></span>
+      <span id="headSyncStatus">🟢 متصل</span>
     </div>
   </div>
-  
   <div class="stats-grid" id="headStats"></div>
-  
   <div class="glass" style="padding:20px; margin-top:15px;">
-    <h3 style="margin-bottom:15px; font-size:18px;">⚙️ تحديث بيانات المجمع اليومية</h3>
-    
+    <h3 style="margin-bottom:15px; font-size:18px;">️ تحديث بيانات المجمع اليومية</h3>
     <div class="input-group">
       <label>تاريخ المتابعة اليومية</label>
       <input type="date" id="followUpDate">
     </div>
-    
     <div class="input-group">
       <label>عدد المدارس الكلي في المجمع (للعرض فقط)</label>
       <input type="number" id="totalSchools" min="0" readonly>
       <small style="color:#fbbf24; font-size:11px; display:block; margin-top:4px;" id="totalSchoolsHint">🔒 تعديل هذا العدد صلاحية حصرية لمدير نظام المتابعة</small>
     </div>
-    
     <div class="input-group">
       <label>عدد المدارس المدققة اليوم (سيُضاف للإنجاز التراكمي)</label>
       <input type="number" id="dailyAudited" min="0" placeholder="مثال: 5">
     </div>
-    
     <div class="input-group">
       <label>الملاحظات / المعوقات</label>
       <textarea id="notes" rows="3" placeholder="اكتب الملاحظات التي تعوق عملية التدقيق..."></textarea>
@@ -354,14 +248,20 @@ const firebaseConfig = {
   appId: "1:1074183028052:web:73090d90976f9c97df9cc1"
 };
 
-let db = null, auth = null, firebaseReady = false, currentData = {}, currentUser = null, currentClusterId = null, dataListener = null, restPollTimer = null, sdkChannelOk = false;
-let isLoading = false; // ✅ علم لمنع ازدحام الطلبات
+let db = null, auth = null, firebaseReady = false;
+let currentData = {};
+let currentUser = null;
+let currentClusterId = null;
+let dataListener = null;
+let restPollTimer = null;
+let sdkChannelOk = false;
 
 try {
   firebase.initializeApp(firebaseConfig);
   db = firebase.database();
   auth = firebase.auth();
   firebaseReady = true;
+  console.log('✅ Firebase initialized');
 } catch (e) { console.error("❌ Firebase init error:", e); }
 
 const USERS_MAP = {
@@ -393,7 +293,6 @@ const CLUSTER_NAMES = {
 CLUSTERS.forEach(c => c.name = CLUSTER_NAMES[c.id] || c.name);
 
 function escapeHtml(str) { return String(str ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
-function fmtDateTime(iso) { const d = new Date(iso); return isNaN(d) ? 'غير متاح' : d.toLocaleString('ar-EG'); }
 
 function showToast(message, type = 'info') {
   const container = document.getElementById('toastContainer');
@@ -406,17 +305,18 @@ function showToast(message, type = 'info') {
 
 function getEmptyData() {
   const init = {};
-  CLUSTERS.forEach(c => { init[c.id] = { totalSchools: 0, auditedSchools: 0, dailyAudited: 0, notes: '', followUpDate: '', lastUpdate: new Date().toISOString() }; });
+  CLUSTERS.forEach(c => { 
+    init[c.id] = { totalSchools: 0, auditedSchools: 0, dailyAudited: 0, notes: '', followUpDate: '', lastUpdate: new Date().toISOString() }; 
+  });
   return init;
 }
 
-function applyServerData(val) {
-  currentData = val || getEmptyData();
-  localStorage.setItem('edlib_audit_data', JSON.stringify(currentData));
+function ensureAllClustersExist() {
   CLUSTERS.forEach(c => {
-    if (!currentData[c.id]) currentData[c.id] = { totalSchools: 0, auditedSchools: 0, dailyAudited: 0, notes: '', followUpDate: '', lastUpdate: new Date().toISOString() };
+    if (!currentData[c.id]) {
+      currentData[c.id] = { totalSchools: 0, auditedSchools: 0, dailyAudited: 0, notes: '', followUpDate: '', lastUpdate: new Date().toISOString() };
+    }
   });
-  renderCurrentView();
 }
 
 function updateSyncUI(state, extraMsg) {
@@ -425,32 +325,26 @@ function updateSyncUI(state, extraMsg) {
   let text = '', cls = 'offline';
   if (state === 'online') text = '🟢 متصل - مزامنة لحظية';
   else if (state === 'rest') { text = '🟢 متصل - تحديث كل 15 ثانية'; cls = ''; }
-  else if (state === 'saving') { text = '🟡 جاري التحميل...'; cls = 'saving'; }
+  else if (state === 'saving') { text = '🟡 جاري المزامنة...'; cls = 'saving'; }
   else if (state === 'error') { text = extraMsg || '🔴 خطأ في الاتصال'; cls = 'offline'; }
-  else if (state === 'waiting') { text = '⚪ في انتظار البيانات'; cls = 'offline'; }
+  else { text = '🟢 متصل'; cls = ''; }
   dots.forEach(d => { if (d) d.className = 'sync-dot ' + cls; });
   statuses.forEach(s => { if (s) s.textContent = text; });
 }
 
-// ✅ إصلاح جذري: Timeout قصير جداً (2.5 ثانية) + منع الازدحام
 async function restFetch() {
-  if (isLoading) return null; // ✅ منع ازدحام الطلبات
-  isLoading = true;
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 2500); // ✅ 2.5 ثانية فقط
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
     const res = await fetch(firebaseConfig.databaseURL + '/audit_data.json', { 
       signal: controller.signal,
       cache: 'no-store'
     });
     clearTimeout(timeoutId);
-    if (!res.ok) throw new Error('REST_' + res.status);
+    if (!res.ok) return null;
     return await res.json();
   } catch (error) {
-    clearTimeout(timeoutId);
-    return null; // ✅ إرجاع null بدلاً من رمي خطأ
-  } finally {
-    isLoading = false;
+    return null;
   }
 }
 
@@ -475,17 +369,25 @@ async function restPut(path, obj) {
 function restPollStart() {
   if (restPollTimer) return;
   restPollTimer = setInterval(async () => {
-    if (!currentUser || isLoading) return;
+    if (!currentUser) return;
     const val = await restFetch();
-    if (val) applyServerData(val);
+    if (val) {
+      currentData = val;
+      ensureAllClustersExist();
+      localStorage.setItem('edlib_audit_data', JSON.stringify(currentData));
+      if (currentUser.role === 'director') renderDirectorView();
+      else if (currentUser.role === 'head') renderHeadView();
+      updateSyncUI('rest');
+    }
   }, 15000);
 }
 function restPollStop() { if (restPollTimer) { clearInterval(restPollTimer); restPollTimer = null; } }
 
-// ✅ إصلاح جذري شامل لمشكلة "جاري التحميل"
-function loadData() {
-  // 1. إيقاف أي عملية تحميل سابقة
-  isLoading = false;
+// ✅ الحل الجذري: loadData() يُنفَّذ بشكل مضمون
+async function loadData() {
+  console.log('📊 loadData() called');
+  console.log('👤 currentUser:', currentUser);
+  
   restPollStop();
   if (dataListener && firebaseReady) {
     db.ref('audit_data').off('value', dataListener);
@@ -493,65 +395,81 @@ function loadData() {
   }
   sdkChannelOk = false;
 
-  // 2. عرض البيانات المحلية فوراً (أولوية قصوى)
   const localCache = localStorage.getItem('edlib_audit_data');
+  console.log('📦 Local cache:', localCache ? 'Found' : 'Not found');
+  
   if (localCache) {
     try {
       currentData = JSON.parse(localCache);
-      renderCurrentView();
-      // ✅ عرض حالة "متصل" فوراً لأن لدينا بيانات صالحة
-      updateSyncUI('rest');
+      console.log('✅ Local data loaded');
     } catch(e) { 
-      console.error("Cache parse error", e); 
+      console.error("❌ Cache parse error:", e);
       currentData = getEmptyData();
-      renderCurrentView();
-      updateSyncUI('waiting');
     }
   } else {
     currentData = getEmptyData();
-    renderCurrentView();
-    updateSyncUI('waiting');
+    console.log('📝 Empty data created');
   }
 
+  ensureAllClustersExist();
+
+  // ✅ استدعاء renderDirectorView() مباشرة وبشكل صريح
+  console.log(' Calling renderDirectorView() directly...');
+  if (currentUser && currentUser.role === 'director') {
+    renderDirectorView();
+  } else if (currentUser && currentUser.role === 'head') {
+    renderHeadView();
+  }
+  
+  updateSyncUI('waiting');
+
   if (!firebaseReady) {
-    if (!localCache) updateSyncUI('error', '⚪ Firebase غير مهيأ');
+    console.warn('⚠️ Firebase not ready');
+    updateSyncUI('error', '⚪ Firebase غير مهيأ');
     return;
   }
 
-  // 3. محاولة الاتصال بالسحابة في الخلفية (بدون إزعاج المستخدم)
-  (async () => {
+  console.log('☁️ Attempting cloud fetch...');
+  setTimeout(async () => {
     const val = await restFetch();
     if (val) {
-      applyServerData(val);
-      updateSyncUI('rest');
-      restPollStart(); // ✅ بدء التحديث الدوري فقط بعد نجاح أول اتصال
-    } else {
-      // ✅ فشل الاتصال - لا نزعج المستخدم إذا كانت هناك بيانات محلية
-      if (!localCache) {
-        updateSyncUI('error', ' فشل الاتصال بالسحابة');
-        showToast('⚠️ تعذر الاتصال، يتم عرض البيانات المحفوظة', 'warning');
+      console.log('✅ Cloud data loaded');
+      currentData = val;
+      ensureAllClustersExist();
+      localStorage.setItem('edlib_audit_data', JSON.stringify(currentData));
+      if (currentUser && currentUser.role === 'director') {
+        renderDirectorView();
       }
-      // ✅ لا نبدأ poll إذا فشل الاتصال الأول
+      updateSyncUI('rest');
+      restPollStart();
+    } else {
+      console.log('⚠️ Cloud fetch failed, staying with local data');
     }
-  })();
+  }, 500);
 
-  // 4. WebSocket في الخلفية (تحسين اختياري)
   setTimeout(() => {
     if (!sdkChannelOk && firebaseReady) {
+      console.log('🔌 Setting up WebSocket...');
       try {
         dataListener = db.ref('audit_data').on('value', snapshot => {
+          console.log('📡 WebSocket data received');
           sdkChannelOk = true;
           restPollStop();
-          applyServerData(snapshot.val());
+          currentData = snapshot.val() || getEmptyData();
+          ensureAllClustersExist();
+          localStorage.setItem('edlib_audit_data', JSON.stringify(currentData));
+          if (currentUser && currentUser.role === 'director') {
+            renderDirectorView();
+          }
           updateSyncUI('online');
         }, error => {
-          console.warn("WebSocket listener error:", error);
+          console.warn("⚠️ WebSocket listener error:", error);
         });
       } catch(e) {
-        console.warn("WebSocket setup failed:", e);
+        console.warn(" WebSocket setup failed:", e);
       }
     }
-  }, 1000); // ✅ تأخير ثانية واحدة لتجنب الازدحام
+  }, 1000);
 }
 
 function fillClusterSelect() {
@@ -568,7 +486,7 @@ async function login() {
   const btn = document.getElementById('loginBtn');
   err.style.display = 'none';
   if (!email || !pass) { err.textContent = '❌ يرجى إدخال البريد الإلكتروني وكلمة المرور'; err.style.display = 'block'; return; }
-  btn.disabled = true; btn.textContent = ' جاري التحقق...';
+  btn.disabled = true; btn.textContent = '⏳ جاري التحقق...';
   try {
     const userCredential = await auth.signInWithEmailAndPassword(email, pass);
     const user = userCredential.user;
@@ -577,10 +495,11 @@ async function login() {
     if (type === 'director' && userInfo.role !== 'director') { await auth.signOut(); throw new Error("هذا الحساب مخصص لرؤساء الشعب وليس للمدير"); }
     if (type === 'head' && userInfo.role !== 'head') { await auth.signOut(); throw new Error("هذا الحساب مخصص لمدير نظام المتابعة"); }
     currentUser = { ...userInfo, uid: user.uid };
+    console.log('✅ Login successful:', currentUser);
     if (userInfo.role === 'head') { currentClusterId = userInfo.clusterId; showHeadDashboard(); } else { showDirectorDashboard(); }
     showToast(`👋 مرحباً بك، ${userInfo.name}`, 'success');
   } catch (error) {
-    console.error("Login error:", error);
+    console.error("❌ Login error:", error);
     let msg = '❌ فشل تسجيل الدخول. تحقق من البيانات.';
     if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-email' || error.code === 'auth/invalid-credential') msg = '❌ البريد الإلكتروني أو كلمة المرور غير صحيحة';
     else if (error.code === 'auth/operation-not-allowed') msg = '❌ خدمة Email/Password غير مفعلة في Firebase Console';
@@ -595,7 +514,6 @@ function logout() {
   restPollStop();
   if (firebaseReady) auth.signOut();
   currentUser = null; currentClusterId = null;
-  isLoading = false;
   document.getElementById('loginScreen').style.display = 'flex';
   document.getElementById('directorDashboard').classList.remove('active');
   document.getElementById('headDashboard').classList.remove('active');
@@ -606,33 +524,68 @@ function logout() {
   document.getElementById('clusterSelectGroup').style.display = 'none';
 }
 
-function showDirectorDashboard() { document.getElementById('loginScreen').style.display = 'none'; document.getElementById('directorDashboard').classList.add('active'); loadData(); }
+// ✅ الحل الجذري: showDirectorDashboard() يستدعي renderDirectorView() مباشرة
+function showDirectorDashboard() { 
+  console.log('👨‍💼 showDirectorDashboard() called');
+  console.log('👤 currentUser:', currentUser);
+  document.getElementById('loginScreen').style.display = 'none'; 
+  document.getElementById('directorDashboard').classList.add('active'); 
+  
+  // ✅ ضمان وجود بيانات
+  if (Object.keys(currentData).length === 0) {
+    currentData = getEmptyData();
+    ensureAllClustersExist();
+  }
+  
+  // ✅ استدعاء renderDirectorView() مباشرة
+  console.log('🎨 Calling renderDirectorView() from showDirectorDashboard()');
+  renderDirectorView();
+  
+  // ثم تحميل البيانات من السحابة
+  loadData(); 
+}
+
 function showHeadDashboard() {
+  console.log('📋 showHeadDashboard() called');
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('headDashboard').classList.add('active');
   const safeName = escapeHtml(currentUser.name);
-  document.getElementById('headTitle').textContent = '📋 ' + safeName;
+  document.getElementById('headTitle').textContent = ' ' + safeName;
   document.getElementById('headBadge').textContent = '👤 ' + safeName;
+  
+  if (Object.keys(currentData).length === 0) {
+    currentData = getEmptyData();
+    ensureAllClustersExist();
+  }
+  
+  renderHeadView();
   loadData();
 }
 
-function renderCurrentView() {
-  if (currentUser?.role === 'director') renderDirectorView();
-  if (currentUser?.role === 'head') renderHeadView();
-}
-
+// ✅ renderDirectorView() مُبسّطة ومضمونة التنفيذ
 function renderDirectorView() {
+  console.log(' renderDirectorView() executing');
+  console.log('📦 currentData:', currentData);
+  console.log('📊 CLUSTERS count:', CLUSTERS.length);
+  
   const now = new Date();
   document.getElementById('currentDate').textContent = '📅 ' + now.toLocaleDateString('ar-EG', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  
   let totalSchools = 0, totalAudited = 0, totalDailyAudited = 0;
-  CLUSTERS.forEach(c => { totalSchools += Number(currentData[c.id]?.totalSchools) || 0; totalAudited += Number(currentData[c.id]?.auditedSchools) || 0; totalDailyAudited += Number(currentData[c.id]?.dailyAudited) || 0; });
+  CLUSTERS.forEach(c => { 
+    totalSchools += Number(currentData[c.id]?.totalSchools) || 0; 
+    totalAudited += Number(currentData[c.id]?.auditedSchools) || 0; 
+    totalDailyAudited += Number(currentData[c.id]?.dailyAudited) || 0; 
+  });
   const percentage = totalSchools > 0 ? ((totalAudited / totalSchools) * 100).toFixed(1) : 0;
+  
   document.getElementById('directorStats').innerHTML = `
     <div class="stat-card glass-strong"><div class="icon">🏢</div><div class="label">المجمعات</div><div class="value">${CLUSTERS.length}</div></div>
     <div class="stat-card glass-strong"><div class="icon">🏫</div><div class="label">إجمالي المدارس</div><div class="value">${totalSchools}</div></div>
-    <div class="stat-card glass-strong"><div class="icon"></div><div class="label">الإنجاز التراكمي</div><div class="value">${totalAudited}</div></div>
+    <div class="stat-card glass-strong"><div class="icon">📊</div><div class="label">الإنجاز التراكمي</div><div class="value">${totalAudited}</div></div>
     <div class="stat-card glass-strong"><div class="icon">📝</div><div class="label">المدققة اليوم</div><div class="value">${totalDailyAudited}</div></div>
     <div class="stat-card glass-strong"><div class="icon">📈</div><div class="label">نسبة الإنجاز</div><div class="value">${percentage}%</div><div class="progress-container"><div class="progress-bar" style="width:${percentage}%"></div></div></div>`;
+  
   let clustersHTML = '';
   CLUSTERS.forEach(c => {
     const d = currentData[c.id] || {};
@@ -644,14 +597,20 @@ function renderDirectorView() {
     const textColor = pct >= 75 ? '#34d399' : pct >= 40 ? '#fbbf24' : '#f87171';
     clustersHTML += `<div class="cluster-card glass-strong" data-id="${c.id}">
       <div class="cluster-header"><div><div class="cluster-name">${c.name}</div><div class="cluster-head">👤 ${c.head}</div></div><span class="cluster-badge" style="background:${badgeColor}; color:${textColor};">${pct}%</span></div>
-      <div class="cluster-stats"><div>🏫 الكلي<span class="num">${total}</span></div><div>📊 تراكمي<span class="num">${audited}</span></div><div>📝 اليوم<span class="num">${daily}</span></div></div>
+      <div class="cluster-stats"><div>🏫 الكلي<span class="num">${total}</span></div><div>📊 تراكمي<span class="num">${audited}</span></div><div> اليوم<span class="num">${daily}</span></div></div>
       <div class="progress-container"><div class="progress-bar" style="width:${pct}%"></div></div>
-      ${d.followUpDate ? `<div class="cluster-date">📅 ${d.followUpDate}</div>` : ''}
+      ${d.followUpDate ? `<div class="cluster-date"> ${d.followUpDate}</div>` : ''}
       ${d.notes ? `<div class="cluster-notes">${escapeHtml(d.notes)}</div>` : ''}
     </div>`;
   });
+  
+  console.log('🎨 Setting innerHTML with', clustersHTML.length, 'characters');
   document.getElementById('directorClusters').innerHTML = clustersHTML;
-  document.querySelectorAll('.cluster-card').forEach(card => { card.addEventListener('click', () => showClusterDetails(card.dataset.id)); });
+  console.log('✅ Director view rendered with', CLUSTERS.length, 'clusters');
+  
+  document.querySelectorAll('.cluster-card').forEach(card => { 
+    card.addEventListener('click', () => showClusterDetails(card.dataset.id)); 
+  });
 }
 
 let currentClusterIdForEdit = null;
@@ -668,26 +627,22 @@ function showClusterDetails(id) {
   if (currentUser && currentUser.role === 'director') {
     directorControlsHTML = `
       <div class="director-controls">
-        <h4>🔧 صلاحيات مدير النظام</h4>
-        
+        <h4> صلاحيات مدير النظام</h4>
         <div class="input-group">
           <label>✏️ تعديل عدد المدارس الكلي</label>
           <input type="number" id="editTotalSchools" min="0" value="${total}">
           <small style="color:#fbbf24; font-size:11px; display:block; margin-top:4px;">⚠️ لا يمكن حفظ عدد أقل من الإنجاز التراكمي (${audited})</small>
         </div>
-        
         <div class="input-group">
           <label>✏️ تعديل الإنجاز التراكمي يدوياً</label>
           <input type="number" id="editAuditedSchools" min="0" max="${total}" value="${audited}">
           <small style="color:#93c5fd; font-size:11px; display:block; margin-top:4px;">💡 يمكن تعيين أي قيمة بين 0 و ${total}</small>
         </div>
-        
         <div class="btn-group">
           <button class="btn btn-success" id="saveTotalBtn">💾 حفظ العدد الكلي</button>
           <button class="btn btn-primary" id="saveAuditedBtn">💾 حفظ الإنجاز</button>
         </div>
-        
-        <div class="btn-group" style="margin-top: 8px;">
+        <div class="btn-group">
           <button class="btn btn-warning" id="resetDailyBtn">🔄 تصفير اليومي</button>
           <button class="btn btn-danger" id="resetAuditedBtn">⚠️ تصفير التراكمي</button>
         </div>
@@ -700,7 +655,7 @@ function showClusterDetails(id) {
     <div style="line-height:1.8; font-size:14px; color: #cbd5e1;">
       <p><strong>👤 رئيس الشعبة:</strong> ${c.head}</p>
       <p><strong>📅 تاريخ المتابعة:</strong> ${d.followUpDate || 'لم يحدد'}</p>
-      <p><strong>🏫 إجمالي المدارس:</strong> ${total}</p>
+      <p><strong> إجمالي المدارس:</strong> ${total}</p>
       <p><strong>📊 الإنجاز التراكمي:</strong> ${audited}</p>
       <p><strong>📝 المدققة اليوم:</strong> ${daily}</p>
       <p><strong>📈 نسبة الإنجاز:</strong> ${pct}%</p>
@@ -711,79 +666,72 @@ function showClusterDetails(id) {
   document.getElementById('detailsModal').classList.add('active');
   
   if (currentUser && currentUser.role === 'director') {
-    document.getElementById('saveTotalBtn').addEventListener('click', () => saveTotalSchools(id));
-    document.getElementById('saveAuditedBtn').addEventListener('click', () => saveAuditedSchools(id));
-    document.getElementById('resetDailyBtn').addEventListener('click', () => resetDailyAudited(id));
-    document.getElementById('resetAuditedBtn').addEventListener('click', () => resetAuditedSchools(id));
+    setTimeout(() => {
+      const saveTotalBtn = document.getElementById('saveTotalBtn');
+      const saveAuditedBtn = document.getElementById('saveAuditedBtn');
+      const resetDailyBtn = document.getElementById('resetDailyBtn');
+      const resetAuditedBtn = document.getElementById('resetAuditedBtn');
+      if (saveTotalBtn) saveTotalBtn.addEventListener('click', () => saveTotalSchools(id));
+      if (saveAuditedBtn) saveAuditedBtn.addEventListener('click', () => saveAuditedSchools(id));
+      if (resetDailyBtn) resetDailyBtn.addEventListener('click', () => resetDailyAudited(id));
+      if (resetAuditedBtn) resetAuditedBtn.addEventListener('click', () => resetAuditedSchools(id));
+    }, 100);
   }
 }
 
 async function saveAuditedSchools(clusterId) {
   const input = document.getElementById('editAuditedSchools');
   const newAudited = parseInt(input.value);
-  if (!Number.isFinite(newAudited) || newAudited < 0) {
-    return showToast('⚠️ يرجى إدخال عدد صحيح غير سالب', 'error');
-  }
+  if (!Number.isFinite(newAudited) || newAudited < 0) return showToast('⚠️ يرجى إدخال عدد صحيح غير سالب', 'error');
   const total = Number((currentData[clusterId] || {}).totalSchools) || 0;
-  if (newAudited > total) {
-    return showToast(`⚠️ لا يمكن تجاوز العدد الكلي (${total})`, 'error');
-  }
+  if (newAudited > total) return showToast(`⚠️ لا يمكن تجاوز العدد الكلي (${total})`, 'error');
   if (!confirm(`⚠️ هل أنت متأكد من تعيين الإنجاز التراكمي إلى ${newAudited}؟`)) return;
-  
   try {
-    await restPatch('/audit_data/' + clusterId, { 
-      auditedSchools: newAudited, 
-      lastUpdate: new Date().toISOString() 
-    });
+    await restPatch('/audit_data/' + clusterId, { auditedSchools: newAudited, lastUpdate: new Date().toISOString() });
     showToast(`✅ تم تحديث الإنجاز التراكمي إلى ${newAudited}`, 'success');
     document.getElementById('detailsModal').classList.remove('active');
-  } catch (err) {
-    console.error("SaveAudited failed:", err);
-    showToast('❌ فشل في الحفظ', 'error');
-  }
+  } catch (err) { console.error("SaveAudited failed:", err); showToast('❌ فشل في الحفظ', 'error'); }
 }
 
 async function resetDailyAudited(clusterId) {
-  if (!confirm(`⚠️ هل أنت متأكد من تصفير الإنجاز اليومي لمجمع ${CLUSTERS.find(c => c.id === clusterId).name}؟`)) return;
-  
+  const clusterName = CLUSTERS.find(c => c.id === clusterId)?.name || clusterId;
+  if (!confirm(`⚠️ هل أنت متأكد من تصفير الإنجاز اليومي لمجمع ${clusterName}؟`)) return;
   try {
-    await restPatch('/audit_data/' + clusterId, { 
-      dailyAudited: 0, 
-      lastUpdate: new Date().toISOString() 
-    });
+    await restPatch('/audit_data/' + clusterId, { dailyAudited: 0, lastUpdate: new Date().toISOString() });
     showToast('✅ تم تصفير الإنجاز اليومي بنجاح', 'success');
     document.getElementById('detailsModal').classList.remove('active');
-  } catch (err) {
-    console.error("ResetDaily failed:", err);
-    showToast('❌ فشل في التصفير', 'error');
-  }
+  } catch (err) { console.error("ResetDaily failed:", err); showToast('❌ فشل في التصفير', 'error'); }
 }
 
 async function resetAuditedSchools(clusterId) {
   const audited = Number((currentData[clusterId] || {}).auditedSchools) || 0;
-  if (audited === 0) {
-    return showToast('ℹ️ الإنجاز التراكمي بالفعل صفر', 'info');
-  }
-  if (!confirm(`⚠️ تحذير: سيتم تصفير الإنجاز التراكمي (${audited}) لمجمع ${CLUSTERS.find(c => c.id === clusterId).name}. هل أنت متأكد؟`)) return;
-  
+  const clusterName = CLUSTERS.find(c => c.id === clusterId)?.name || clusterId;
+  if (audited === 0) return showToast('ℹ️ الإنجاز التراكمي بالفعل صفر', 'info');
+  if (!confirm(`️ تحذير: سيتم تصفير الإنجاز التراكمي (${audited}) واليومي لمجمع ${clusterName}. هل أنت متأكد؟`)) return;
   try {
-    await restPatch('/audit_data/' + clusterId, { 
-      auditedSchools: 0, 
-      dailyAudited: 0,
-      lastUpdate: new Date().toISOString() 
-    });
+    await restPatch('/audit_data/' + clusterId, { auditedSchools: 0, dailyAudited: 0, lastUpdate: new Date().toISOString() });
     showToast('✅ تم تصفير الإنجاز التراكمي واليومي بنجاح', 'success');
     document.getElementById('detailsModal').classList.remove('active');
-  } catch (err) {
-    console.error("ResetAudited failed:", err);
-    showToast('❌ فشل في التصفير', 'error');
-  }
+  } catch (err) { console.error("ResetAudited failed:", err); showToast('❌ فشل في التصفير', 'error'); }
+}
+
+async function saveTotalSchools(clusterId) {
+  const input = document.getElementById('editTotalSchools');
+  const newTotal = parseInt(input.value);
+  if (!Number.isFinite(newTotal) || newTotal < 0) return showToast('️ يرجى إدخال عدد صحيح غير سالب', 'error');
+  const audited = Number((currentData[clusterId] || {}).auditedSchools) || 0;
+  if (newTotal < audited) return showToast('⚠️ لا يمكن حفظ عدد أقل من الإنجاز التراكمي الحالي (' + audited + ')', 'error');
+  try {
+    await restPatch('/audit_data/' + clusterId, { totalSchools: newTotal, lastUpdate: new Date().toISOString() });
+    showToast('✅ تم تحديث عدد المدارس الكلي بنجاح', 'success');
+    document.getElementById('detailsModal').classList.remove('active');
+  } catch (err) { console.error("SaveTotal failed:", err); showToast('❌ فشل في الحفظ', 'error'); }
 }
 
 function renderHeadView() {
   const d = currentData[currentClusterId] || {};
   const now = new Date();
-  document.getElementById('headDate').textContent = '📅 ' + now.toLocaleDateString('ar-EG', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  document.getElementById('headDate').textContent = ' ' + now.toLocaleDateString('ar-EG', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
   const audited = Number(d.auditedSchools) || 0;
   const total = Number(d.totalSchools) || 0;
   const daily = Number(d.dailyAudited) || 0;
@@ -792,7 +740,7 @@ function renderHeadView() {
   document.getElementById('headStats').innerHTML = `
     <div class="stat-card glass-strong"><div class="icon">🏫</div><div class="label">إجمالي المدارس</div><div class="value">${total}</div></div>
     <div class="stat-card glass-strong"><div class="icon">📊</div><div class="label">الإنجاز التراكمي</div><div class="value">${audited}</div></div>
-    <div class="stat-card glass-strong"><div class="icon"></div><div class="label">المدققة اليوم</div><div class="value">${daily}</div></div>
+    <div class="stat-card glass-strong"><div class="icon">📝</div><div class="label">المدققة اليوم</div><div class="value">${daily}</div></div>
     <div class="stat-card glass-strong"><div class="icon">⏳</div><div class="label">المتبقية</div><div class="value">${remaining > 0 ? remaining : 0}</div></div>
     <div class="stat-card glass-strong"><div class="icon">📈</div><div class="label">نسبة الإنجاز</div><div class="value">${pct}%</div><div class="progress-container"><div class="progress-bar" style="width:${pct}%"></div></div></div>`;
   const totalInput = document.getElementById('totalSchools');
@@ -814,7 +762,7 @@ async function saveHeadData() {
   const oldData = currentData[currentClusterId] || {};
   const prevTotal = Number(oldData.totalSchools) || 0;
   const prevAudited = Number(oldData.auditedSchools) || 0;
-  if (prevTotal === 0) return showToast('️ لم يحدد مدير النظام عدد المدارس الكلي لمجمعك بعد', 'error');
+  if (prevTotal === 0) return showToast('⚠️ لم يحدد مدير النظام عدد المدارس الكلي لمجمعك بعد', 'error');
   if (daily > 0 && prevAudited + daily > prevTotal) return showToast('⚠️ الإنجاز التراكمي سيتجاوز العدد الكلي (' + prevTotal + ')', 'error');
   const btn = document.getElementById('saveBtn');
   btn.disabled = true; btn.textContent = '⏳ جاري الحفظ...';
@@ -847,19 +795,6 @@ async function saveHeadViaRest(daily, notes, followUpDate, prevTotal) {
   await restPatch('/audit_data/' + currentClusterId, { auditedSchools: pAudited + daily, dailyAudited: daily, notes: notes, followUpDate: followUpDate, lastUpdate: new Date().toISOString() });
 }
 
-async function saveTotalSchools(clusterId) {
-  const input = document.getElementById('editTotalSchools');
-  const newTotal = parseInt(input.value);
-  if (!Number.isFinite(newTotal) || newTotal < 0) return showToast('⚠️ يرجى إدخال عدد صحيح غير سالب', 'error');
-  const audited = Number((currentData[clusterId] || {}).auditedSchools) || 0;
-  if (newTotal < audited) return showToast('⚠️ لا يمكن حفظ عدد أقل من الإنجاز التراكمي الحالي (' + audited + ')', 'error');
-  try {
-    await restPatch('/audit_data/' + clusterId, { totalSchools: newTotal, lastUpdate: new Date().toISOString() });
-    showToast('✅ تم تحديث عدد المدارس الكلي بنجاح', 'success');
-    document.getElementById('detailsModal').classList.remove('active');
-  } catch (err) { console.error("SaveTotal failed:", err); showToast('❌ فشل في الحفظ', 'error'); }
-}
-
 function exportData() {
   try {
     const blob = new Blob([JSON.stringify(currentData, null, 2)], { type: 'application/json' });
@@ -867,7 +802,7 @@ function exportData() {
     const a = document.createElement('a'); a.href = url; a.download = `edlib_audit_${new Date().toISOString().split('T')[0]}.json`; a.click();
     URL.revokeObjectURL(url);
     showToast('📥 تم تصدير البيانات بنجاح', 'success');
-  } catch (e) { showToast(' فشل في تصدير البيانات', 'error'); }
+  } catch (e) { showToast('❌ فشل في تصدير البيانات', 'error'); }
 }
 
 function importData(e) {
@@ -885,10 +820,13 @@ function importData(e) {
           if (val[field] !== undefined && (!Number.isFinite(val[field]) || val[field] < 0)) throw new Error(`قيمة غير صالحة في ${key}.${field}`);
         }
       }
-      if (confirm('️ سيتم استبدال البيانات الحالية. هل تريد المتابعة؟')) {
+      if (confirm('⚠️ سيتم استبدال البيانات الحالية. هل تريد المتابعة؟')) {
         localStorage.setItem('edlib_audit_data', JSON.stringify(imported));
         await restPut('/audit_data', imported);
-        applyServerData(imported);
+        currentData = imported;
+        ensureAllClustersExist();
+        if (currentUser && currentUser.role === 'director') renderDirectorView();
+        else if (currentUser && currentUser.role === 'head') renderHeadView();
         showToast('✅ تم استيراد البيانات بنجاح', 'success');
       }
     } catch (err) { console.error("Import error:", err); showToast('❌ ملف غير صالح أو تالف', 'error'); }
@@ -899,10 +837,13 @@ function importData(e) {
 
 if (firebaseReady) {
   auth.onAuthStateChanged(user => {
+    console.log('🔐 onAuthStateChanged:', user);
     if (!user) return;
     const userInfo = USERS_MAP[(user.email || '').toLowerCase()];
+    console.log('👤 userInfo:', userInfo);
     if (!userInfo) return;
     currentUser = { ...userInfo, uid: user.uid };
+    console.log('✅ currentUser set:', currentUser);
     if (userInfo.role === 'head') { currentClusterId = userInfo.clusterId; showHeadDashboard(); } else { showDirectorDashboard(); }
   });
 }
@@ -939,3 +880,28 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
+
+              <script>
+                              function showDirectorDashboard() { 
+  document.getElementById('loginScreen').style.display = 'none'; 
+  document.getElementById('directorDashboard').classList.add('active'); 
+  
+  // ✅ ضمان وجود بيانات
+  if (Object.keys(currentData).length === 0) {
+    currentData = getEmptyData();
+    ensureAllClustersExist();
+  }
+  
+  // ✅ استدعاء renderDirectorView() مباشرة
+  renderDirectorView();
+  
+  // ثم تحميل البيانات من السحابة
+  loadData(); 
+}
+
+
+              </script>
+                        </body>
+                        </html>
+                    
