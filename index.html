@@ -1,19 +1,4 @@
-
-                        <!DOCTYPE html>
-                        <html lang="en">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <style>
-                body {
-                  background-color: white; /* Ensure the iframe has a white background */
-                }
-
-                
-              </style>
-                        </head>
-                        <body>
-                            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -39,6 +24,7 @@
   .input-group input::placeholder, .input-group textarea::placeholder { color: rgba(148, 163, 184, 0.6); }
   .input-group input:focus, .input-group select:focus, .input-group textarea:focus { background: rgba(15, 23, 42, 0.8); border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); }
   .input-group input[readonly] { background: rgba(15, 23, 42, 0.3); color: #94a3b8; cursor: not-allowed; border-color: rgba(234, 179, 8, 0.35); }
+  .input-group input:disabled { background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); cursor: not-allowed; }
   input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
   .input-group select option { background: #1e293b; color: #fff; }
   .btn { padding: 10px 18px; background: rgba(148, 163, 184, 0.15); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 10px; color: #e2e8f0; font-size: 14px; font-weight: 700; cursor: pointer; transition: 0.3s; backdrop-filter: blur(10px); }
@@ -61,31 +47,36 @@
   .header .user-info { display: flex; align-items: center; gap: 12px; font-size: 13px; }
   .header .user-badge { padding: 4px 12px; background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 20px; font-size: 12px; color: #93c5fd; }
   .date-display { font-size: 13px; opacity: 0.8; margin-top: 4px; color: #94a3b8; }
+  
+  /* ✅ تم التحديث إلى 5 بطاقات */
   .stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 15px; }
   .stat-card { padding: 15px 10px; text-align: center; transition: 0.3s; }
   .stat-card:hover { transform: translateY(-3px); border-color: rgba(59, 130, 246, 0.4); }
   .stat-card .icon { font-size: 28px; margin-bottom: 6px; }
-  .stat-card .value { font-size: 24px; font-weight: 800; margin: 4px 0; color: #fff; }
+  .stat-card .value { font-size: 22px; font-weight: 800; margin: 4px 0; color: #fff; }
   .stat-card .label { font-size: 12px; color: #94a3b8; font-weight: 500; }
+  
   .progress-container { background: rgba(15, 23, 42, 0.5); border-radius: 20px; height: 8px; overflow: hidden; margin-top: 8px; }
   .progress-bar { height: 100%; background: linear-gradient(90deg, #10b981, #34d399); border-radius: 20px; transition: width 0.5s; }
   .section-title { font-size: 18px; margin: 15px 0 10px; padding-right: 12px; border-right: 4px solid #3b82f6; font-weight: 700; color: #e2e8f0; }
-  .clusters-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+  .clusters-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
   .cluster-card { padding: 12px; transition: 0.3s; cursor: pointer; }
   .cluster-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.5); border-color: rgba(59, 130, 246, 0.4); }
   .cluster-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid rgba(148, 163, 184, 0.2); }
   .cluster-name { font-size: 15px; font-weight: 700; color: #fff; }
   .cluster-head { font-size: 11px; opacity: 0.8; margin-top: 2px; color: #94a3b8; }
   .cluster-badge { padding: 3px 8px; background: rgba(59, 130, 246, 0.2); border-radius: 12px; font-size: 11px; font-weight: 700; color: #93c5fd; }
-  .cluster-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 8px; font-size: 11px; }
-  .cluster-stats div { padding: 4px; background: rgba(15, 23, 42, 0.4); border-radius: 6px; color: #cbd5e1; text-align: center; }
-  .cluster-stats .num { font-weight: 800; font-size: 15px; color: #34d399; display: block; margin-top: 2px; }
+  
+  .cluster-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 8px; font-size: 11px; }
+  .cluster-stats div { padding: 6px 4px; background: rgba(15, 23, 42, 0.4); border-radius: 6px; color: #cbd5e1; text-align: center; }
+  .cluster-stats .num { font-weight: 800; font-size: 16px; color: #34d399; display: block; margin-top: 2px; }
+  
   .cluster-date { font-size: 10px; margin-top: 6px; color: #93c5fd; background: rgba(59, 130, 246, 0.1); padding: 2px 6px; border-radius: 4px; display: inline-block; }
   .cluster-notes { background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.2); padding: 6px; border-radius: 8px; font-size: 11px; margin-top: 6px; max-height: 36px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; color: #fde68a; }
   .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
   .modal.active { display: flex; }
-  .modal-content { padding: 25px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; }
-  .modal-content h3 { margin-bottom: 15px; font-size: 18px; color: #fff; }
+  .modal-content { padding: 25px; width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; }
+  .modal-content h3 { margin-bottom: 15px; font-size: 18px; color: #fff; display: flex; justify-content: space-between; align-items: center; }
   .modal-actions { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
   .modal-actions .btn { flex: 1; min-width: 120px; }
   .director-controls { background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05)); border: 2px solid rgba(59, 130, 246, 0.4); border-radius: 12px; padding: 18px; margin-top: 20px; }
@@ -109,8 +100,16 @@
   .toast.fade-out { animation: fadeOut 0.3s ease-out forwards; }
   @keyframes fadeOut { to { transform: translateX(-100%); opacity: 0; } }
   .security-notice { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); padding: 10px; border-radius: 8px; font-size: 11px; color: #93c5fd; margin-top: 15px; text-align: right; }
+  
+  .live-indicator { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 20px; font-size: 11px; color: #34d399; font-weight: 700; }
+  .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; animation: pulse 1.5s infinite; }
+  .live-indicator.updating { background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.4); color: #fbbf24; }
+  .live-indicator.updating .live-dot { background: #f59e0b; }
+  
+  .sync-info { font-size: 11px; color: #94a3b8; margin-top: 8px; text-align: center; padding: 6px; background: rgba(15, 23, 42, 0.4); border-radius: 6px; }
+  
   @media (max-width: 1024px) { body { overflow-y: auto; } .stats-grid { grid-template-columns: repeat(3, 1fr); } .clusters-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); } }
-  @media (max-width: 600px) { .header { flex-direction: column; align-items: flex-start; } .stat-card .value { font-size: 20px; } .stats-grid { grid-template-columns: repeat(2, 1fr); } .cluster-stats { grid-template-columns: 1fr 1fr; } .director-controls .btn-group { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .header { flex-direction: column; align-items: flex-start; } .stat-card .value { font-size: 18px; } .stats-grid { grid-template-columns: repeat(2, 1fr); } .cluster-stats { grid-template-columns: repeat(2, 1fr); } .director-controls .btn-group { grid-template-columns: 1fr; } }
 </style>
 <base target="_blank">
 </head>
@@ -172,7 +171,7 @@
       <span id="syncStatus">🟢 متصل</span>
     </div>
     <div>
-      <button class="btn" id="exportBtn"> تصدير JSON</button>
+      <button class="btn" id="exportBtn">📥 تصدير JSON</button>
       <button class="btn" id="importBtn">📤 استيراد</button>
       <input type="file" id="importFile" style="display:none" accept=".json">
     </div>
@@ -201,21 +200,36 @@
   </div>
   <div class="stats-grid" id="headStats"></div>
   <div class="glass" style="padding:20px; margin-top:15px;">
-    <h3 style="margin-bottom:15px; font-size:18px;">️ تحديث بيانات المجمع اليومية</h3>
+    <h3 style="margin-bottom:15px; font-size:18px;">⚙️ تحديث بيانات المجمع اليومية</h3>
     <div class="input-group">
       <label>تاريخ المتابعة اليومية</label>
       <input type="date" id="followUpDate">
     </div>
     <div class="input-group">
-      <label>عدد المدارس الكلي في المجمع (للعرض فقط)</label>
+      <label>إجمالي عدد المدارس (للعرض فقط)</label>
       <input type="number" id="totalSchools" min="0" readonly>
-      <small style="color:#fbbf24; font-size:11px; display:block; margin-top:4px;" id="totalSchoolsHint">🔒 تعديل هذا العدد صلاحية حصرية لمدير نظام المتابعة</small>
     </div>
     <div class="input-group">
-      <label>عدد المدارس المدققة اليوم (سيُضاف للإنجاز التراكمي)</label>
-      <input type="number" id="dailyAudited" min="0" placeholder="مثال: 5">
+      <label>المدارس المدققة جزئيا</label>
+      <input type="number" id="partiallyAuditedSchools" min="0" placeholder="مثال: 3">
+      <small style="color:#fbbf24; font-size:11px; display:block; margin-top:4px;">✏️ يمكنك تعديل هذا الرقم</small>
     </div>
     <div class="input-group">
+      <label>المدارس المدققة كلياً (تراكمي قبل اليوم)</label>
+      <input type="number" id="fullyAuditedSchools" min="0" placeholder="مثال: 20">
+      <small style="color:#93c5fd; font-size:11px; display:block; margin-top:4px;">📊 إجمالي المدارس المدققة كلياً قبل اليوم</small>
+    </div>
+    <div class="input-group">
+      <label>المدارس المدققة هذا اليوم تدقيقا كليا</label>
+      <input type="number" id="dailyFullyAudited" min="0" placeholder="مثال: 5">
+      <small style="color:#34d399; font-size:11px; display:block; margin-top:4px;">📝 سيُضاف للإنجاز التراكمي تلقائياً</small>
+    </div>
+    <div class="input-group">
+      <label>الإنجاز التراكمي (محسوب تلقائياً)</label>
+      <input type="number" id="totalAuditedDisplay" min="0" readonly style="background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.4); color: #34d399; font-weight: 700;">
+    </div>
+    <div id="headSyncInfo" class="sync-info"></div>
+    <div class="input-group" style="margin-top: 15px;">
       <label>الملاحظات / المعوقات</label>
       <textarea id="notes" rows="3" placeholder="اكتب الملاحظات التي تعوق عملية التدقيق..."></textarea>
     </div>
@@ -225,7 +239,13 @@
 
 <div id="detailsModal" class="modal">
   <div class="modal-content glass">
-    <h3 id="modalTitle">تفاصيل المجمع</h3>
+    <h3>
+      <span id="modalTitle">تفاصيل المجمع</span>
+      <span id="modalLiveIndicator" class="live-indicator">
+        <span class="live-dot"></span>
+        <span id="liveIndicatorText">🔴 مباشر</span>
+      </span>
+    </h3>
     <div id="modalBody"></div>
     <div class="modal-actions">
       <button class="btn btn-primary" id="closeModalBtn">إغلاق</button>
@@ -255,13 +275,17 @@ let currentClusterId = null;
 let dataListener = null;
 let restPollTimer = null;
 let sdkChannelOk = false;
+let modalClusterWatcher = null;
+let currentModalClusterId = null;
+let lastModalUpdate = 0;
+let isDirectorEditing = false;
+let lastSyncTimestamp = 0;
 
 try {
   firebase.initializeApp(firebaseConfig);
   db = firebase.database();
   auth = firebase.auth();
   firebaseReady = true;
-  console.log('✅ Firebase initialized');
 } catch (e) { console.error("❌ Firebase init error:", e); }
 
 const USERS_MAP = {
@@ -303,18 +327,43 @@ function showToast(message, type = 'info') {
   setTimeout(() => { toast.classList.add('fade-out'); setTimeout(() => toast.remove(), 300); }, 3000);
 }
 
+// ✅ تم حذف fullyAssignedSchools من بنية البيانات
 function getEmptyData() {
   const init = {};
   CLUSTERS.forEach(c => { 
-    init[c.id] = { totalSchools: 0, auditedSchools: 0, dailyAudited: 0, notes: '', followUpDate: '', lastUpdate: new Date().toISOString() }; 
+    init[c.id] = { 
+      totalSchools: 0, 
+      partiallyAssignedSchools: 0, 
+      fullyAuditedSchools: 0,
+      dailyFullyAudited: 0,
+      auditedSchools: 0, 
+      notes: '', 
+      followUpDate: '', 
+      lastUpdate: new Date().toISOString() 
+    }; 
   });
   return init;
+}
+
+function migrateOldData(clusterData) {
+  const data = { ...clusterData };
+  
+  if (data.fullyAuditedSchools === undefined || data.fullyAuditedSchools === null) data.fullyAuditedSchools = 0;
+  if (data.dailyFullyAudited === undefined || data.dailyFullyAudited === null) data.dailyFullyAudited = 0;
+  if (data.partiallyAssignedSchools === undefined || data.partiallyAssignedSchools === null) data.partiallyAssignedSchools = 0;
+  if (data.totalSchools === undefined || data.totalSchools === null) data.totalSchools = 0;
+  
+  data.auditedSchools = Number(data.fullyAuditedSchools) + Number(data.dailyFullyAudited);
+  
+  return data;
 }
 
 function ensureAllClustersExist() {
   CLUSTERS.forEach(c => {
     if (!currentData[c.id]) {
-      currentData[c.id] = { totalSchools: 0, auditedSchools: 0, dailyAudited: 0, notes: '', followUpDate: '', lastUpdate: new Date().toISOString() };
+      currentData[c.id] = getEmptyData()[c.id];
+    } else {
+      currentData[c.id] = migrateOldData(currentData[c.id]);
     }
   });
 }
@@ -336,33 +385,20 @@ async function restFetch() {
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 5000);
-    const res = await fetch(firebaseConfig.databaseURL + '/audit_data.json', { 
-      signal: controller.signal,
-      cache: 'no-store'
-    });
+    const res = await fetch(firebaseConfig.databaseURL + '/audit_data.json', { signal: controller.signal, cache: 'no-store' });
     clearTimeout(timeoutId);
     if (!res.ok) return null;
     return await res.json();
-  } catch (error) {
-    return null;
-  }
+  } catch (error) { return null; }
 }
 
 async function restPatch(path, obj) {
-  const res = await fetch(firebaseConfig.databaseURL + path + '.json', { 
-    method: 'PATCH', 
-    headers: { 'Content-Type': 'application/json' }, 
-    body: JSON.stringify(obj) 
-  });
+  const res = await fetch(firebaseConfig.databaseURL + path + '.json', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(obj) });
   if (!res.ok) throw new Error('REST_' + res.status);
 }
 
 async function restPut(path, obj) {
-  const res = await fetch(firebaseConfig.databaseURL + path + '.json', { 
-    method: 'PUT', 
-    headers: { 'Content-Type': 'application/json' }, 
-    body: JSON.stringify(obj) 
-  });
+  const res = await fetch(firebaseConfig.databaseURL + path + '.json', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(obj) });
   if (!res.ok) throw new Error('REST_' + res.status);
 }
 
@@ -383,91 +419,145 @@ function restPollStart() {
 }
 function restPollStop() { if (restPollTimer) { clearInterval(restPollTimer); restPollTimer = null; } }
 
-// ✅ الحل الجذري: loadData() يُنفَّذ بشكل مضمون
-async function loadData() {
-  console.log('📊 loadData() called');
-  console.log('👤 currentUser:', currentUser);
-  
-  restPollStop();
-  if (dataListener && firebaseReady) {
-    db.ref('audit_data').off('value', dataListener);
-    dataListener = null;
+function stopModalWatcher() {
+  if (modalClusterWatcher && currentModalClusterId && firebaseReady) {
+    try {
+      db.ref('audit_data/' + currentModalClusterId).off('value', modalClusterWatcher);
+    } catch (e) { console.warn('⚠️ Failed to stop modal watcher:', e); }
   }
+  modalClusterWatcher = null;
+  currentModalClusterId = null;
+}
+
+function startModalWatcher(clusterId) {
+  stopModalWatcher();
+  if (!firebaseReady) return;
+  currentModalClusterId = clusterId;
+  
+  modalClusterWatcher = db.ref('audit_data/' + clusterId).on('value', snapshot => {
+    const newData = snapshot.val();
+    if (!newData) return;
+    
+    currentData[clusterId] = migrateOldData(newData);
+    ensureAllClustersExist();
+    localStorage.setItem('edlib_audit_data', JSON.stringify(currentData));
+    
+    if (currentUser && currentUser.role === 'director') {
+      renderDirectorView();
+    }
+    
+    const modal = document.getElementById('detailsModal');
+    if (!modal.classList.contains('active')) return;
+    
+    const now = Date.now();
+    lastModalUpdate = now;
+    
+    const totalEl = document.getElementById('editTotalSchools');
+    const partiallyEl = document.getElementById('editPartiallyAssigned');
+    const fullyAuditedEl = document.getElementById('editFullyAudited');
+    const dailyFullyEl = document.getElementById('editDailyFully');
+    
+    const activeEl = document.activeElement;
+    
+    if (totalEl && activeEl !== totalEl) totalEl.value = currentData[clusterId].totalSchools || 0;
+    if (partiallyEl && activeEl !== partiallyEl) partiallyEl.value = currentData[clusterId].partiallyAssignedSchools || 0;
+    if (fullyAuditedEl && activeEl !== fullyAuditedEl) fullyAuditedEl.value = currentData[clusterId].fullyAuditedSchools || 0;
+    if (dailyFullyEl && activeEl !== dailyFullyEl) dailyFullyEl.value = currentData[clusterId].dailyFullyAudited || 0;
+    
+    const infoSection = document.querySelector('#modalBody > div');
+    if (infoSection) {
+      const c = CLUSTERS.find(x => x.id === clusterId);
+      const d = currentData[clusterId];
+      const total = Number(d.totalSchools) || 0;
+      const partially = Number(d.partiallyAssignedSchools) || 0;
+      const fullyAudited = Number(d.fullyAuditedSchools) || 0;
+      const dailyFully = Number(d.dailyFullyAudited) || 0;
+      const audited = fullyAudited + dailyFully;
+      const overallPct = total > 0 ? ((audited / total) * 100).toFixed(1) : 0;
+      
+      infoSection.innerHTML = `
+        <p><strong>👤 رئيس الشعبة:</strong> ${c.head}</p>
+        <p><strong>📅 تاريخ المتابعة:</strong> ${d.followUpDate || 'لم يحدد'}</p>
+        <p><strong>🏫 إجمالي عدد المدارس:</strong> ${total}</p>
+        <p><strong>🔀 المدارس المدققة جزئيا:</strong> ${partially}</p>
+        <p><strong>✅ المدققة كلياً (تراكمي):</strong> ${fullyAudited}</p>
+        <p><strong>📝 المدققة كلياً اليوم:</strong> ${dailyFully}</p>
+        <p><strong>📊 الإنجاز التراكمي:</strong> ${audited}</p>
+        <p><strong>🎯 نسبة الإنجاز الكلي:</strong> ${overallPct}%</p>
+        <p><strong>📌 الملاحظات:</strong><br>${escapeHtml(d.notes) || 'لا توجد ملاحظات'}</p>
+      `;
+    }
+    
+    const liveIndicator = document.getElementById('modalLiveIndicator');
+    const liveText = document.getElementById('liveIndicatorText');
+    if (liveIndicator && liveText) {
+      liveIndicator.classList.remove('updating');
+      liveText.textContent = '🔴 مباشر';
+    }
+    
+  }, error => {
+    console.warn('⚠️ Modal watcher error:', error);
+  });
+}
+
+function flashLiveIndicator() {
+  const liveIndicator = document.getElementById('modalLiveIndicator');
+  const liveText = document.getElementById('liveIndicatorText');
+  if (liveIndicator && liveText) {
+    liveIndicator.classList.add('updating');
+    liveText.textContent = '🟡 جاري التحديث...';
+    setTimeout(() => {
+      liveIndicator.classList.remove('updating');
+      liveText.textContent = '🔴 مباشر';
+    }, 1500);
+  }
+}
+
+async function loadData() {
+  restPollStop();
+  if (dataListener && firebaseReady) { db.ref('audit_data').off('value', dataListener); dataListener = null; }
   sdkChannelOk = false;
 
   const localCache = localStorage.getItem('edlib_audit_data');
-  console.log('📦 Local cache:', localCache ? 'Found' : 'Not found');
-  
   if (localCache) {
-    try {
-      currentData = JSON.parse(localCache);
-      console.log('✅ Local data loaded');
-    } catch(e) { 
-      console.error("❌ Cache parse error:", e);
-      currentData = getEmptyData();
-    }
-  } else {
-    currentData = getEmptyData();
-    console.log('📝 Empty data created');
-  }
+    try { currentData = JSON.parse(localCache); } 
+    catch(e) { currentData = getEmptyData(); }
+  } else { currentData = getEmptyData(); }
 
   ensureAllClustersExist();
 
-  // ✅ استدعاء renderDirectorView() مباشرة وبشكل صريح
-  console.log(' Calling renderDirectorView() directly...');
-  if (currentUser && currentUser.role === 'director') {
-    renderDirectorView();
-  } else if (currentUser && currentUser.role === 'head') {
-    renderHeadView();
-  }
+  if (currentUser && currentUser.role === 'director') renderDirectorView();
+  else if (currentUser && currentUser.role === 'head') renderHeadView();
   
   updateSyncUI('waiting');
 
-  if (!firebaseReady) {
-    console.warn('⚠️ Firebase not ready');
-    updateSyncUI('error', '⚪ Firebase غير مهيأ');
-    return;
-  }
+  if (!firebaseReady) { updateSyncUI('error', '⚪ Firebase غير مهيأ'); return; }
 
-  console.log('☁️ Attempting cloud fetch...');
   setTimeout(async () => {
     const val = await restFetch();
     if (val) {
-      console.log('✅ Cloud data loaded');
       currentData = val;
       ensureAllClustersExist();
       localStorage.setItem('edlib_audit_data', JSON.stringify(currentData));
-      if (currentUser && currentUser.role === 'director') {
-        renderDirectorView();
-      }
+      if (currentUser && currentUser.role === 'director') renderDirectorView();
       updateSyncUI('rest');
       restPollStart();
-    } else {
-      console.log('⚠️ Cloud fetch failed, staying with local data');
     }
   }, 500);
 
   setTimeout(() => {
     if (!sdkChannelOk && firebaseReady) {
-      console.log('🔌 Setting up WebSocket...');
       try {
         dataListener = db.ref('audit_data').on('value', snapshot => {
-          console.log('📡 WebSocket data received');
           sdkChannelOk = true;
           restPollStop();
           currentData = snapshot.val() || getEmptyData();
           ensureAllClustersExist();
           localStorage.setItem('edlib_audit_data', JSON.stringify(currentData));
-          if (currentUser && currentUser.role === 'director') {
-            renderDirectorView();
-          }
+          if (currentUser && currentUser.role === 'director') renderDirectorView();
           updateSyncUI('online');
-        }, error => {
-          console.warn("⚠️ WebSocket listener error:", error);
-        });
-      } catch(e) {
-        console.warn(" WebSocket setup failed:", e);
-      }
+        }, error => { console.warn("⚠️ WebSocket listener error:", error); });
+      } catch(e) { console.warn(" WebSocket setup failed:", e); }
     }
   }, 1000);
 }
@@ -495,11 +585,9 @@ async function login() {
     if (type === 'director' && userInfo.role !== 'director') { await auth.signOut(); throw new Error("هذا الحساب مخصص لرؤساء الشعب وليس للمدير"); }
     if (type === 'head' && userInfo.role !== 'head') { await auth.signOut(); throw new Error("هذا الحساب مخصص لمدير نظام المتابعة"); }
     currentUser = { ...userInfo, uid: user.uid };
-    console.log('✅ Login successful:', currentUser);
     if (userInfo.role === 'head') { currentClusterId = userInfo.clusterId; showHeadDashboard(); } else { showDirectorDashboard(); }
     showToast(`👋 مرحباً بك، ${userInfo.name}`, 'success');
   } catch (error) {
-    console.error("❌ Login error:", error);
     let msg = '❌ فشل تسجيل الدخول. تحقق من البيانات.';
     if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-email' || error.code === 'auth/invalid-credential') msg = '❌ البريد الإلكتروني أو كلمة المرور غير صحيحة';
     else if (error.code === 'auth/operation-not-allowed') msg = '❌ خدمة Email/Password غير مفعلة في Firebase Console';
@@ -510,6 +598,7 @@ async function login() {
 }
 
 function logout() {
+  stopModalWatcher();
   if (dataListener && firebaseReady) { db.ref('audit_data').off('value', dataListener); dataListener = null; }
   restPollStop();
   if (firebaseReady) auth.signOut();
@@ -524,93 +613,83 @@ function logout() {
   document.getElementById('clusterSelectGroup').style.display = 'none';
 }
 
-// ✅ الحل الجذري: showDirectorDashboard() يستدعي renderDirectorView() مباشرة
 function showDirectorDashboard() { 
-  console.log('👨‍💼 showDirectorDashboard() called');
-  console.log('👤 currentUser:', currentUser);
   document.getElementById('loginScreen').style.display = 'none'; 
   document.getElementById('directorDashboard').classList.add('active'); 
-  
-  // ✅ ضمان وجود بيانات
-  if (Object.keys(currentData).length === 0) {
-    currentData = getEmptyData();
-    ensureAllClustersExist();
-  }
-  
-  // ✅ استدعاء renderDirectorView() مباشرة
-  console.log('🎨 Calling renderDirectorView() from showDirectorDashboard()');
+  if (Object.keys(currentData).length === 0) { currentData = getEmptyData(); ensureAllClustersExist(); }
   renderDirectorView();
-  
-  // ثم تحميل البيانات من السحابة
   loadData(); 
 }
 
 function showHeadDashboard() {
-  console.log('📋 showHeadDashboard() called');
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('headDashboard').classList.add('active');
   const safeName = escapeHtml(currentUser.name);
-  document.getElementById('headTitle').textContent = ' ' + safeName;
+  document.getElementById('headTitle').textContent = '📋 ' + safeName;
   document.getElementById('headBadge').textContent = '👤 ' + safeName;
-  
-  if (Object.keys(currentData).length === 0) {
-    currentData = getEmptyData();
-    ensureAllClustersExist();
-  }
-  
+  if (Object.keys(currentData).length === 0) { currentData = getEmptyData(); ensureAllClustersExist(); }
   renderHeadView();
   loadData();
 }
 
-// ✅ renderDirectorView() مُبسّطة ومضمونة التنفيذ
+// ✅ تم حذف بطاقة "نسبة الإنجاز" وبطاقة "المكفلة كليا"
 function renderDirectorView() {
-  console.log(' renderDirectorView() executing');
-  console.log('📦 currentData:', currentData);
-  console.log('📊 CLUSTERS count:', CLUSTERS.length);
-  
   const now = new Date();
   document.getElementById('currentDate').textContent = '📅 ' + now.toLocaleDateString('ar-EG', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
   
-  let totalSchools = 0, totalAudited = 0, totalDailyAudited = 0;
+  let totalSchools = 0, totalPartially = 0, totalAudited = 0, totalDailyFully = 0;
   CLUSTERS.forEach(c => { 
-    totalSchools += Number(currentData[c.id]?.totalSchools) || 0; 
-    totalAudited += Number(currentData[c.id]?.auditedSchools) || 0; 
-    totalDailyAudited += Number(currentData[c.id]?.dailyAudited) || 0; 
+    const d = currentData[c.id] || {};
+    totalSchools += Number(d.totalSchools) || 0; 
+    totalPartially += Number(d.partiallyAssignedSchools) || 0; 
+    const fullyAudited = Number(d.fullyAuditedSchools) || 0;
+    const dailyFully = Number(d.dailyFullyAudited) || 0;
+    totalAudited += fullyAudited + dailyFully;
+    totalDailyFully += dailyFully; 
   });
-  const percentage = totalSchools > 0 ? ((totalAudited / totalSchools) * 100).toFixed(1) : 0;
+  
+  const overallPercentage = totalSchools > 0 ? ((totalAudited / totalSchools) * 100).toFixed(1) : 0;
   
   document.getElementById('directorStats').innerHTML = `
     <div class="stat-card glass-strong"><div class="icon">🏢</div><div class="label">المجمعات</div><div class="value">${CLUSTERS.length}</div></div>
-    <div class="stat-card glass-strong"><div class="icon">🏫</div><div class="label">إجمالي المدارس</div><div class="value">${totalSchools}</div></div>
+    <div class="stat-card glass-strong"><div class="icon">🏫</div><div class="label">إجمالي عدد المدارس</div><div class="value">${totalSchools}</div></div>
+    <div class="stat-card glass-strong"><div class="icon">🔀</div><div class="label">المدققة جزئيا</div><div class="value">${totalPartially}</div></div>
     <div class="stat-card glass-strong"><div class="icon">📊</div><div class="label">الإنجاز التراكمي</div><div class="value">${totalAudited}</div></div>
-    <div class="stat-card glass-strong"><div class="icon">📝</div><div class="label">المدققة اليوم</div><div class="value">${totalDailyAudited}</div></div>
-    <div class="stat-card glass-strong"><div class="icon">📈</div><div class="label">نسبة الإنجاز</div><div class="value">${percentage}%</div><div class="progress-container"><div class="progress-bar" style="width:${percentage}%"></div></div></div>`;
+    <div class="stat-card glass-strong"><div class="icon">🎯</div><div class="label">نسبة الإنجاز الكلي</div><div class="value">${overallPercentage}%</div><div class="progress-container"><div class="progress-bar" style="width:${Math.min(100, overallPercentage)}%; background: linear-gradient(90deg, #3b82f6, #60a5fa);"></div></div></div>`;
   
   let clustersHTML = '';
   CLUSTERS.forEach(c => {
     const d = currentData[c.id] || {};
-    const audited = Number(d.auditedSchools) || 0;
     const total = Number(d.totalSchools) || 0;
-    const daily = Number(d.dailyAudited) || 0;
-    const pct = total > 0 ? ((audited / total) * 100).toFixed(1) : 0;
-    const badgeColor = pct >= 75 ? 'rgba(16, 185, 129, 0.2)' : pct >= 40 ? 'rgba(234, 179, 8, 0.2)' : 'rgba(239, 68, 68, 0.2)';
-    const textColor = pct >= 75 ? '#34d399' : pct >= 40 ? '#fbbf24' : '#f87171';
+    const partially = Number(d.partiallyAssignedSchools) || 0;
+    const fullyAudited = Number(d.fullyAuditedSchools) || 0;
+    const dailyFully = Number(d.dailyFullyAudited) || 0;
+    const audited = fullyAudited + dailyFully;
+    
+    const overallPct = total > 0 ? ((audited / total) * 100).toFixed(1) : 0;
+    
+    // ✅ تم حذف pct و progress-container من بطاقات المجمعات
     clustersHTML += `<div class="cluster-card glass-strong" data-id="${c.id}">
-      <div class="cluster-header"><div><div class="cluster-name">${c.name}</div><div class="cluster-head">👤 ${c.head}</div></div><span class="cluster-badge" style="background:${badgeColor}; color:${textColor};">${pct}%</span></div>
-      <div class="cluster-stats"><div>🏫 الكلي<span class="num">${total}</span></div><div>📊 تراكمي<span class="num">${audited}</span></div><div> اليوم<span class="num">${daily}</span></div></div>
-      <div class="progress-container"><div class="progress-bar" style="width:${pct}%"></div></div>
-      ${d.followUpDate ? `<div class="cluster-date"> ${d.followUpDate}</div>` : ''}
+      <div class="cluster-header">
+        <div>
+          <div class="cluster-name">${c.name}</div>
+          <div class="cluster-head">👤 ${c.head}</div>
+        </div>
+      </div>
+      <div class="cluster-stats">
+        <div>🏫 الإجمالي<span class="num">${total}</span></div>
+        <div>🔀 مدققة جزئيا<span class="num">${partially}</span></div>
+        <div>📊 تراكمي<span class="num">${audited}</span></div>
+        <div>📝 اليوم<span class="num">${dailyFully}</span></div>
+        <div>🎯 الإنجاز الكلي<span class="num" style="color: #60a5fa;">${overallPct}%</span></div>
+      </div>
+      ${d.followUpDate ? `<div class="cluster-date">📅 ${d.followUpDate}</div>` : ''}
       ${d.notes ? `<div class="cluster-notes">${escapeHtml(d.notes)}</div>` : ''}
     </div>`;
   });
   
-  console.log('🎨 Setting innerHTML with', clustersHTML.length, 'characters');
   document.getElementById('directorClusters').innerHTML = clustersHTML;
-  console.log('✅ Director view rendered with', CLUSTERS.length, 'clusters');
-  
-  document.querySelectorAll('.cluster-card').forEach(card => { 
-    card.addEventListener('click', () => showClusterDetails(card.dataset.id)); 
-  });
+  document.querySelectorAll('.cluster-card').forEach(card => { card.addEventListener('click', () => showClusterDetails(card.dataset.id)); });
 }
 
 let currentClusterIdForEdit = null;
@@ -618,32 +697,39 @@ function showClusterDetails(id) {
   currentClusterIdForEdit = id;
   const c = CLUSTERS.find(x => x.id === id);
   const d = currentData[id] || {};
-  const audited = Number(d.auditedSchools) || 0;
   const total = Number(d.totalSchools) || 0;
-  const daily = Number(d.dailyAudited) || 0;
-  const pct = total > 0 ? ((audited / total) * 100).toFixed(1) : 0;
+  const partially = Number(d.partiallyAssignedSchools) || 0;
+  const fullyAudited = Number(d.fullyAuditedSchools) || 0;
+  const dailyFully = Number(d.dailyFullyAudited) || 0;
+  const audited = fullyAudited + dailyFully;
+  const overallPct = total > 0 ? ((audited / total) * 100).toFixed(1) : 0;
   
   let directorControlsHTML = '';
   if (currentUser && currentUser.role === 'director') {
     directorControlsHTML = `
       <div class="director-controls">
-        <h4> صلاحيات مدير النظام</h4>
+        <h4>⚙️ صلاحيات مدير النظام</h4>
         <div class="input-group">
-          <label>✏️ تعديل عدد المدارس الكلي</label>
+          <label>✏️ إجمالي عدد المدارس</label>
           <input type="number" id="editTotalSchools" min="0" value="${total}">
-          <small style="color:#fbbf24; font-size:11px; display:block; margin-top:4px;">⚠️ لا يمكن حفظ عدد أقل من الإنجاز التراكمي (${audited})</small>
         </div>
         <div class="input-group">
-          <label>✏️ تعديل الإنجاز التراكمي يدوياً</label>
-          <input type="number" id="editAuditedSchools" min="0" max="${total}" value="${audited}">
-          <small style="color:#93c5fd; font-size:11px; display:block; margin-top:4px;">💡 يمكن تعيين أي قيمة بين 0 و ${total}</small>
+          <label>✏️ المدارس المدققة جزئيا</label>
+          <input type="number" id="editPartiallyAssigned" min="0" value="${partially}">
+        </div>
+        <div class="input-group">
+          <label>✏️ المدققة كلياً (تراكمي قبل اليوم)</label>
+          <input type="number" id="editFullyAudited" min="0" value="${fullyAudited}">
+        </div>
+        <div class="input-group">
+          <label>✏️ المدققة كلياً اليوم</label>
+          <input type="number" id="editDailyFully" min="0" value="${dailyFully}">
         </div>
         <div class="btn-group">
-          <button class="btn btn-success" id="saveTotalBtn">💾 حفظ العدد الكلي</button>
-          <button class="btn btn-primary" id="saveAuditedBtn">💾 حفظ الإنجاز</button>
-        </div>
-        <div class="btn-group">
+          <button class="btn btn-success" id="saveEquationBtn">💾 حفظ الأعداد</button>
           <button class="btn btn-warning" id="resetDailyBtn">🔄 تصفير اليومي</button>
+        </div>
+        <div class="btn-group">
           <button class="btn btn-danger" id="resetAuditedBtn">⚠️ تصفير التراكمي</button>
         </div>
       </div>
@@ -655,144 +741,191 @@ function showClusterDetails(id) {
     <div style="line-height:1.8; font-size:14px; color: #cbd5e1;">
       <p><strong>👤 رئيس الشعبة:</strong> ${c.head}</p>
       <p><strong>📅 تاريخ المتابعة:</strong> ${d.followUpDate || 'لم يحدد'}</p>
-      <p><strong> إجمالي المدارس:</strong> ${total}</p>
+      <p><strong>🏫 إجمالي عدد المدارس:</strong> ${total}</p>
+      <p><strong>🔀 المدارس المدققة جزئيا:</strong> ${partially}</p>
+      <p><strong>✅ المدققة كلياً (تراكمي):</strong> ${fullyAudited}</p>
+      <p><strong>📝 المدققة كلياً اليوم:</strong> ${dailyFully}</p>
       <p><strong>📊 الإنجاز التراكمي:</strong> ${audited}</p>
-      <p><strong>📝 المدققة اليوم:</strong> ${daily}</p>
-      <p><strong>📈 نسبة الإنجاز:</strong> ${pct}%</p>
+      <p><strong>🎯 نسبة الإنجاز الكلي:</strong> ${overallPct}%</p>
       <p><strong>📌 الملاحظات:</strong><br>${escapeHtml(d.notes) || 'لا توجد ملاحظات'}</p>
     </div>
     ${directorControlsHTML}
   `;
   document.getElementById('detailsModal').classList.add('active');
   
+  startModalWatcher(id);
+  
   if (currentUser && currentUser.role === 'director') {
     setTimeout(() => {
-      const saveTotalBtn = document.getElementById('saveTotalBtn');
-      const saveAuditedBtn = document.getElementById('saveAuditedBtn');
-      const resetDailyBtn = document.getElementById('resetDailyBtn');
-      const resetAuditedBtn = document.getElementById('resetAuditedBtn');
-      if (saveTotalBtn) saveTotalBtn.addEventListener('click', () => saveTotalSchools(id));
-      if (saveAuditedBtn) saveAuditedBtn.addEventListener('click', () => saveAuditedSchools(id));
-      if (resetDailyBtn) resetDailyBtn.addEventListener('click', () => resetDailyAudited(id));
-      if (resetAuditedBtn) resetAuditedBtn.addEventListener('click', () => resetAuditedSchools(id));
+      document.getElementById('saveEquationBtn').addEventListener('click', () => saveEquationData(id));
+      document.getElementById('resetDailyBtn').addEventListener('click', () => resetDailyAudited(id));
+      document.getElementById('resetAuditedBtn').addEventListener('click', () => resetAuditedSchools(id));
     }, 100);
   }
 }
 
-async function saveAuditedSchools(clusterId) {
-  const input = document.getElementById('editAuditedSchools');
-  const newAudited = parseInt(input.value);
-  if (!Number.isFinite(newAudited) || newAudited < 0) return showToast('⚠️ يرجى إدخال عدد صحيح غير سالب', 'error');
-  const total = Number((currentData[clusterId] || {}).totalSchools) || 0;
-  if (newAudited > total) return showToast(`⚠️ لا يمكن تجاوز العدد الكلي (${total})`, 'error');
-  if (!confirm(`⚠️ هل أنت متأكد من تعيين الإنجاز التراكمي إلى ${newAudited}؟`)) return;
+// ✅ تم حذف fullyAssignedSchools من الحفظ
+async function saveEquationData(clusterId) {
+  isDirectorEditing = true;
+  flashLiveIndicator();
+  
+  const total = parseInt(document.getElementById('editTotalSchools').value) || 0;
+  const partially = parseInt(document.getElementById('editPartiallyAssigned').value) || 0;
+  const fullyAudited = parseInt(document.getElementById('editFullyAudited').value) || 0;
+  const dailyFully = parseInt(document.getElementById('editDailyFully').value) || 0;
+  const audited = fullyAudited + dailyFully;
+  
+  if (total < 0 || partially < 0 || fullyAudited < 0 || dailyFully < 0) {
+    isDirectorEditing = false;
+    return showToast('⚠️ الأرقام لا يمكن أن تكون سالبة', 'error');
+  }
+  // ✅ التحقق يعتمد على total بدلاً من fully
+  if (audited > total) {
+    isDirectorEditing = false;
+    return showToast('⚠️ الإنجاز التراكمي لا يمكن أن يتجاوز إجمالي عدد المدارس', 'error');
+  }
+  
   try {
-    await restPatch('/audit_data/' + clusterId, { auditedSchools: newAudited, lastUpdate: new Date().toISOString() });
-    showToast(`✅ تم تحديث الإنجاز التراكمي إلى ${newAudited}`, 'success');
-    document.getElementById('detailsModal').classList.remove('active');
-  } catch (err) { console.error("SaveAudited failed:", err); showToast('❌ فشل في الحفظ', 'error'); }
+    await restPatch('/audit_data/' + clusterId, { 
+      totalSchools: total, 
+      partiallyAssignedSchools: partially,
+      fullyAuditedSchools: fullyAudited,
+      dailyFullyAudited: dailyFully,
+      auditedSchools: audited,
+      lastUpdate: new Date().toISOString() 
+    });
+    showToast('✅ تم تحديث أعداد المدارس بنجاح', 'success');
+    lastSyncTimestamp = Date.now();
+  } catch (err) { 
+    console.error("SaveEquation failed:", err); 
+    showToast('❌ فشل في الحفظ', 'error'); 
+  } finally {
+    setTimeout(() => { isDirectorEditing = false; }, 2000);
+  }
 }
 
 async function resetDailyAudited(clusterId) {
-  const clusterName = CLUSTERS.find(c => c.id === clusterId)?.name || clusterId;
-  if (!confirm(`⚠️ هل أنت متأكد من تصفير الإنجاز اليومي لمجمع ${clusterName}؟`)) return;
+  if (!confirm('⚠️ هل أنت متأكد من تصفير الإنجاز اليومي؟')) return;
+  flashLiveIndicator();
   try {
-    await restPatch('/audit_data/' + clusterId, { dailyAudited: 0, lastUpdate: new Date().toISOString() });
+    const currentData = (await restFetch()) || {};
+    const clusterData = currentData[clusterId] || {};
+    const fullyAudited = Number(clusterData.fullyAuditedSchools) || 0;
+    
+    await restPatch('/audit_data/' + clusterId, { 
+      dailyFullyAudited: 0,
+      auditedSchools: fullyAudited,
+      lastUpdate: new Date().toISOString() 
+    });
     showToast('✅ تم تصفير الإنجاز اليومي بنجاح', 'success');
-    document.getElementById('detailsModal').classList.remove('active');
-  } catch (err) { console.error("ResetDaily failed:", err); showToast('❌ فشل في التصفير', 'error'); }
+  } catch (err) { showToast('❌ فشل في التصفير', 'error'); }
 }
 
 async function resetAuditedSchools(clusterId) {
-  const audited = Number((currentData[clusterId] || {}).auditedSchools) || 0;
-  const clusterName = CLUSTERS.find(c => c.id === clusterId)?.name || clusterId;
-  if (audited === 0) return showToast('ℹ️ الإنجاز التراكمي بالفعل صفر', 'info');
-  if (!confirm(`️ تحذير: سيتم تصفير الإنجاز التراكمي (${audited}) واليومي لمجمع ${clusterName}. هل أنت متأكد؟`)) return;
+  if (!confirm(`⚠️ تحذير: سيتم تصفير الإنجاز التراكمي واليومي. هل أنت متأكد؟`)) return;
+  flashLiveIndicator();
   try {
-    await restPatch('/audit_data/' + clusterId, { auditedSchools: 0, dailyAudited: 0, lastUpdate: new Date().toISOString() });
+    await restPatch('/audit_data/' + clusterId, { 
+      fullyAuditedSchools: 0,
+      dailyFullyAudited: 0,
+      auditedSchools: 0,
+      lastUpdate: new Date().toISOString() 
+    });
     showToast('✅ تم تصفير الإنجاز التراكمي واليومي بنجاح', 'success');
-    document.getElementById('detailsModal').classList.remove('active');
-  } catch (err) { console.error("ResetAudited failed:", err); showToast('❌ فشل في التصفير', 'error'); }
+  } catch (err) { showToast('❌ فشل في التصفير', 'error'); }
 }
 
-async function saveTotalSchools(clusterId) {
-  const input = document.getElementById('editTotalSchools');
-  const newTotal = parseInt(input.value);
-  if (!Number.isFinite(newTotal) || newTotal < 0) return showToast('️ يرجى إدخال عدد صحيح غير سالب', 'error');
-  const audited = Number((currentData[clusterId] || {}).auditedSchools) || 0;
-  if (newTotal < audited) return showToast('⚠️ لا يمكن حفظ عدد أقل من الإنجاز التراكمي الحالي (' + audited + ')', 'error');
-  try {
-    await restPatch('/audit_data/' + clusterId, { totalSchools: newTotal, lastUpdate: new Date().toISOString() });
-    showToast('✅ تم تحديث عدد المدارس الكلي بنجاح', 'success');
-    document.getElementById('detailsModal').classList.remove('active');
-  } catch (err) { console.error("SaveTotal failed:", err); showToast('❌ فشل في الحفظ', 'error'); }
-}
-
+// ✅ تم حذف بطاقة "نسبة الإنجاز" وبطاقة "المكفلة كليا"
 function renderHeadView() {
   const d = currentData[currentClusterId] || {};
   const now = new Date();
-  document.getElementById('headDate').textContent = ' ' + now.toLocaleDateString('ar-EG', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-  const audited = Number(d.auditedSchools) || 0;
+  document.getElementById('headDate').textContent = '📅 ' + now.toLocaleDateString('ar-EG', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  
   const total = Number(d.totalSchools) || 0;
-  const daily = Number(d.dailyAudited) || 0;
-  const pct = total > 0 ? ((audited / total) * 100).toFixed(1) : 0;
-  const remaining = total - audited;
+  const partially = Number(d.partiallyAssignedSchools) || 0;
+  const fullyAudited = Number(d.fullyAuditedSchools) || 0;
+  const dailyFully = Number(d.dailyFullyAudited) || 0;
+  const audited = fullyAudited + dailyFully;
+  const overallPct = total > 0 ? ((audited / total) * 100).toFixed(1) : 0;
+  
   document.getElementById('headStats').innerHTML = `
     <div class="stat-card glass-strong"><div class="icon">🏫</div><div class="label">إجمالي المدارس</div><div class="value">${total}</div></div>
+    <div class="stat-card glass-strong"><div class="icon">🔀</div><div class="label">المدققة جزئيا</div><div class="value">${partially}</div></div>
     <div class="stat-card glass-strong"><div class="icon">📊</div><div class="label">الإنجاز التراكمي</div><div class="value">${audited}</div></div>
-    <div class="stat-card glass-strong"><div class="icon">📝</div><div class="label">المدققة اليوم</div><div class="value">${daily}</div></div>
-    <div class="stat-card glass-strong"><div class="icon">⏳</div><div class="label">المتبقية</div><div class="value">${remaining > 0 ? remaining : 0}</div></div>
-    <div class="stat-card glass-strong"><div class="icon">📈</div><div class="label">نسبة الإنجاز</div><div class="value">${pct}%</div><div class="progress-container"><div class="progress-bar" style="width:${pct}%"></div></div></div>`;
-  const totalInput = document.getElementById('totalSchools');
-  totalInput.value = total;
-  totalInput.readOnly = true;
-  document.getElementById('dailyAudited').value = 0;
+    <div class="stat-card glass-strong"><div class="icon">📝</div><div class="label">المدققة اليوم</div><div class="value">${dailyFully}</div></div>
+    <div class="stat-card glass-strong"><div class="icon">🎯</div><div class="label">نسبة الإنجاز الكلي</div><div class="value">${overallPct}%</div><div class="progress-container"><div class="progress-bar" style="width:${Math.min(100, overallPct)}%; background: linear-gradient(90deg, #3b82f6, #60a5fa);"></div></div></div>`;
+    
+  document.getElementById('totalSchools').value = total;
+  document.getElementById('partiallyAuditedSchools').value = partially;
+  document.getElementById('fullyAuditedSchools').value = fullyAudited;
+  document.getElementById('dailyFullyAudited').value = dailyFully;
+  document.getElementById('totalAuditedDisplay').value = audited;
   document.getElementById('notes').value = d.notes || '';
+  
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('followUpDate').max = today;
   document.getElementById('followUpDate').value = d.followUpDate || today;
+  
+  const syncInfoEl = document.getElementById('headSyncInfo');
+  if (syncInfoEl) {
+    const lastSync = lastSyncTimestamp > 0 ? new Date(lastSyncTimestamp).toLocaleTimeString('ar-EG') : 'لم يتم بعد';
+    syncInfoEl.innerHTML = `🔄 آخر مزامنة: ${lastSync}`;
+  }
+  
+  ['partiallyAuditedSchools', 'fullyAuditedSchools', 'dailyFullyAudited'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', () => {
+        const fullyAudited = parseInt(document.getElementById('fullyAuditedSchools').value) || 0;
+        const dailyFully = parseInt(document.getElementById('dailyFullyAudited').value) || 0;
+        document.getElementById('totalAuditedDisplay').value = fullyAudited + dailyFully;
+      });
+    }
+  });
 }
 
+// ✅ التحقق يعتمد على total بدلاً من fully
 async function saveHeadData() {
-  const daily = parseInt(document.getElementById('dailyAudited').value) || 0;
+  const freshData = await restFetch();
+  if (freshData && freshData[currentClusterId]) {
+    currentData[currentClusterId] = migrateOldData(freshData[currentClusterId]);
+    ensureAllClustersExist();
+  }
+  
   const notes = document.getElementById('notes').value.trim();
   const followUpDate = document.getElementById('followUpDate').value;
-  if (daily < 0) return showToast('⚠️ لا يمكن إدخال أرقام سالبة', 'error');
+  const partially = parseInt(document.getElementById('partiallyAuditedSchools').value) || 0;
+  const fullyAudited = parseInt(document.getElementById('fullyAuditedSchools').value) || 0;
+  const dailyFully = parseInt(document.getElementById('dailyFullyAudited').value) || 0;
+  const audited = fullyAudited + dailyFully;
+  
+  if (partially < 0 || fullyAudited < 0 || dailyFully < 0) return showToast('⚠️ لا يمكن إدخال أرقام سالبة', 'error');
   if (!followUpDate) return showToast('⚠️ يرجى تحديد تاريخ المتابعة', 'error');
+  
   const oldData = currentData[currentClusterId] || {};
-  const prevTotal = Number(oldData.totalSchools) || 0;
-  const prevAudited = Number(oldData.auditedSchools) || 0;
-  if (prevTotal === 0) return showToast('⚠️ لم يحدد مدير النظام عدد المدارس الكلي لمجمعك بعد', 'error');
-  if (daily > 0 && prevAudited + daily > prevTotal) return showToast('⚠️ الإنجاز التراكمي سيتجاوز العدد الكلي (' + prevTotal + ')', 'error');
+  const total = Number(oldData.totalSchools) || 0;
+  
+  if (total === 0) return showToast('⚠️ لم يحدد مدير النظام أعداد المدارس لمجمعك بعد', 'error');
+  if (audited > total) return showToast('⚠️ الإنجاز التراكمي سيتجاوز إجمالي عدد المدارس (' + total + ')', 'error');
+  
   const btn = document.getElementById('saveBtn');
   btn.disabled = true; btn.textContent = '⏳ جاري الحفظ...';
   try {
-    if (sdkChannelOk) {
-      try {
-        if (daily > 0) {
-          const auditedRef = db.ref('audit_data/' + currentClusterId + '/auditedSchools');
-          const res = await auditedRef.transaction(prev => { const p = Number(prev) || 0; const nv = p + daily; if (nv > prevTotal) return; return nv; });
-          if (!res.committed) throw new Error('EXCEEDS_TOTAL');
-        }
-        await db.ref('audit_data/' + currentClusterId).update({ dailyAudited: daily, notes: notes, followUpDate: followUpDate, lastUpdate: new Date().toISOString() });
-      } catch (sdkErr) { if (sdkErr && sdkErr.message === 'EXCEEDS_TOTAL') throw sdkErr; await saveHeadViaRest(daily, notes, followUpDate, prevTotal); }
-    } else { await saveHeadViaRest(daily, notes, followUpDate, prevTotal); }
+    await restPatch('/audit_data/' + currentClusterId, { 
+      partiallyAssignedSchools: partially,
+      fullyAuditedSchools: fullyAudited,
+      dailyFullyAudited: dailyFully,
+      auditedSchools: audited,
+      notes: notes, 
+      followUpDate: followUpDate, 
+      lastUpdate: new Date().toISOString() 
+    });
     showToast('✅ تم حفظ التحديثات بنجاح', 'success');
-    document.getElementById('dailyAudited').value = 0;
+    lastSyncTimestamp = Date.now();
   } catch (error) {
     console.error("Save failed:", error);
-    if (error && error.message === 'EXCEEDS_TOTAL') showToast('⚠️ الإنجاز التراكمي سيتجاوز العدد الكلي', 'error');
-    else showToast('❌ فشل في الحفظ، تحقق من الاتصال', 'error');
+    showToast('❌ فشل في الحفظ، تحقق من الاتصال', 'error');
   } finally { btn.disabled = false; btn.textContent = '💾 حفظ التحديثات'; }
-}
-
-async function saveHeadViaRest(daily, notes, followUpDate, prevTotal) {
-  const cur = (await restFetch()) || {};
-  const base = cur[currentClusterId] || {};
-  const pAudited = Number(base.auditedSchools) || 0;
-  const pTotal = Number(base.totalSchools) || prevTotal;
-  if (daily > 0 && pAudited + daily > pTotal) throw new Error('EXCEEDS_TOTAL');
-  await restPatch('/audit_data/' + currentClusterId, { auditedSchools: pAudited + daily, dailyAudited: daily, notes: notes, followUpDate: followUpDate, lastUpdate: new Date().toISOString() });
 }
 
 function exportData() {
@@ -816,7 +949,8 @@ function importData(e) {
       const KNOWN_IDS = CLUSTERS.map(c => c.id);
       for (const [key, val] of Object.entries(imported)) {
         if (!KNOWN_IDS.includes(key) || typeof val !== 'object' || val === null) throw new Error("يحتوي الملف على مجمع غير معروف: " + key);
-        for (const field of ['totalSchools', 'auditedSchools', 'dailyAudited']) {
+        // ✅ تم حذف fullyAssignedSchools من التحقق
+        for (const field of ['totalSchools', 'partiallyAssignedSchools', 'fullyAuditedSchools', 'dailyFullyAudited', 'auditedSchools']) {
           if (val[field] !== undefined && (!Number.isFinite(val[field]) || val[field] < 0)) throw new Error(`قيمة غير صالحة في ${key}.${field}`);
         }
       }
@@ -837,13 +971,10 @@ function importData(e) {
 
 if (firebaseReady) {
   auth.onAuthStateChanged(user => {
-    console.log('🔐 onAuthStateChanged:', user);
     if (!user) return;
     const userInfo = USERS_MAP[(user.email || '').toLowerCase()];
-    console.log('👤 userInfo:', userInfo);
     if (!userInfo) return;
     currentUser = { ...userInfo, uid: user.uid };
-    console.log('✅ currentUser set:', currentUser);
     if (userInfo.role === 'head') { currentClusterId = userInfo.clusterId; showHeadDashboard(); } else { showDirectorDashboard(); }
   });
 }
@@ -871,37 +1002,24 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('logoutBtn1').addEventListener('click', logout);
   document.getElementById('logoutBtn2').addEventListener('click', logout);
   document.getElementById('saveBtn').addEventListener('click', saveHeadData);
-  document.getElementById('closeModalBtn').addEventListener('click', () => document.getElementById('detailsModal').classList.remove('active'));
+  
+  document.getElementById('closeModalBtn').addEventListener('click', () => {
+    stopModalWatcher();
+    document.getElementById('detailsModal').classList.remove('active');
+  });
+  
   document.getElementById('exportBtn').addEventListener('click', exportData);
   document.getElementById('importBtn').addEventListener('click', () => document.getElementById('importFile').click());
   document.getElementById('importFile').addEventListener('change', importData);
   document.getElementById('loginPass').addEventListener('keypress', e => { if (e.key === 'Enter') login(); });
+  
+  document.getElementById('detailsModal').addEventListener('click', (e) => {
+    if (e.target.id === 'detailsModal') {
+      stopModalWatcher();
+      document.getElementById('detailsModal').classList.remove('active');
+    }
+  });
 });
 </script>
 </body>
 </html>
-
-
-              <script>
-                              function showDirectorDashboard() { 
-  document.getElementById('loginScreen').style.display = 'none'; 
-  document.getElementById('directorDashboard').classList.add('active'); 
-  
-  // ✅ ضمان وجود بيانات
-  if (Object.keys(currentData).length === 0) {
-    currentData = getEmptyData();
-    ensureAllClustersExist();
-  }
-  
-  // ✅ استدعاء renderDirectorView() مباشرة
-  renderDirectorView();
-  
-  // ثم تحميل البيانات من السحابة
-  loadData(); 
-}
-
-
-              </script>
-                        </body>
-                        </html>
-                    
